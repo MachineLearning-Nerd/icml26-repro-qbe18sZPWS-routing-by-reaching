@@ -3,6 +3,9 @@
 **Session:** autoloop. **Last updated:** 2026-07-17. **State:** locally complete;
 publication queued.
 
+Public GitHub: `MachineLearning-Nerd/icml26-repro-qbe18sZPWS-routing-by-reaching`
+at commit `925fb12`.
+
 ## Source audit
 
 - Paper: arXiv 2602.21565; OpenReview `qbe18sZPWS`.
@@ -26,4 +29,5 @@ publication queued.
 ## Next
 
 - Publish to `DineshAI/qbe18sZPWS` after the daily 20-Space creation quota
-  resets, verify public tags/artifact bucket, and request verdict.
+  resets (latest attempt returned HTTP 429 with about 23 hours remaining), verify
+  public tags/artifact bucket, and request verdict.
