@@ -3,9 +3,15 @@
   "title": "Repro - Routing by Reaching",
   "emoji": "🎯",
   "space_id": "DineshAI/qbe18sZPWS",
-  "paper": null,
-  "tags": [],
-  "updated_at": "2026-07-17T04:04:11+00:00",
+  "paper": {
+    "arxiv_id": "2602.21565",
+    "openreview_id": "qbe18sZPWS"
+  },
+  "tags": [
+    "icml2026-repro",
+    "paper-qbe18sZPWS"
+  ],
+  "updated_at": "2026-07-17T04:05:38+00:00",
   "root": {
     "slug": "index",
     "title": "Repro - Routing by Reaching",
@@ -50,5 +56,5 @@
     ]
   },
   "agent_view_tokens": 1209,
-  "revision": "1784261051693488228"
+  "revision": "1784261138741258201"
 }
