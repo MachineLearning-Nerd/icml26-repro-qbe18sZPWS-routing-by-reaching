@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "title": "Repro - Routing by Reaching",
+  "emoji": "🎯",
+  "space_id": "DineshAI/qbe18sZPWS",
+  "paper": null,
+  "tags": [],
+  "updated_at": "2026-07-17T04:04:11+00:00",
+  "root": {
+    "slug": "index",
+    "title": "Repro - Routing by Reaching",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "claim-1-training-free-composition",
+        "title": "Claim 1 - Training-free composition",
+        "file": "pages/claim-1-training-free-composition/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-2-exact-scalarization",
+        "title": "Claim 2 - Exact scalarization",
+        "file": "pages/claim-2-exact-scalarization/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-3-nonlinear-operators",
+        "title": "Claim 3 - Nonlinear operators",
+        "file": "pages/claim-3-nonlinear-operators/page.md",
+        "children": []
+      },
+      {
+        "slug": "methods",
+        "title": "Methods",
+        "file": "pages/methods/page.md",
+        "children": []
+      },
+      {
+        "slug": "negative-controls",
+        "title": "Negative controls",
+        "file": "pages/negative-controls/page.md",
+        "children": []
+      },
+      {
+        "slug": "conclusion",
+        "title": "Conclusion",
+        "file": "pages/conclusion/page.md",
+        "children": []
+      }
+    ]
+  },
+  "agent_view_tokens": 1209,
+  "revision": "1784261051693488228"
+}

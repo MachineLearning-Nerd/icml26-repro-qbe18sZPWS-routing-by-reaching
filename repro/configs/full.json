@@ -1,0 +1,7 @@
+{
+  "height": 32,
+  "linear_preferences_per_objective_count": 128,
+  "objective_counts": [2, 3, 4, 5],
+  "nonlinear_operators": ["harmonic_mean", "contrast"],
+  "precision": "float64"
+}

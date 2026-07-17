@@ -1,0 +1,40 @@
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ----- Virtual environments -----
+venv/
+env/
+.venv/
+
+# ----- IDE / editors -----
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ----- Jupyter -----
+.ipynb_checkpoints/
+
+# ----- Project-specific: data / artifacts that should be regenerated, not tracked -----
+mols/ckpts/
+mols/data/dsgdb9nsd.xyz.tar
+mols/eval_results/
+mols/eval_results_backup/
+mols/logs/
+grid/pretrained_models/
+grid/plots/
+
+# Allow `.gitkeep` placeholders
+!**/.gitkeep
