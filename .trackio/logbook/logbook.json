@@ -11,7 +11,7 @@
     "icml2026-repro",
     "paper-qbe18sZPWS"
   ],
-  "updated_at": "2026-07-17T04:05:38+00:00",
+  "updated_at": "2026-07-19T15:12:43+00:00",
   "root": {
     "slug": "index",
     "title": "Repro - Routing by Reaching",
@@ -55,6 +55,6 @@
       }
     ]
   },
-  "agent_view_tokens": 1209,
-  "revision": "1784261138741258201"
+  "agent_view_tokens": 2676,
+  "revision": "1784473963662676000"
 }

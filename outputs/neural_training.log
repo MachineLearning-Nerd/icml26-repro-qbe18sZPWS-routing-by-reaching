@@ -1,0 +1,126 @@
+/Users/dineshjinjala/Documents/AllCode/ICMLPapers/papers/icml26-repro-qbe18sZPWS-routing-by-reaching/repro/src/train_neural_gfns.py:133: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:823.)
+  log(f"    [{name}] step {step}: TB loss {float(loss):.4f} "
+    [shubert] step 0: TB loss 5.4686 logZ 0.100
+    [shubert] step 1000: TB loss 0.2469 logZ 5.980
+    [shubert] step 2000: TB loss 0.1538 logZ 6.113
+    [shubert] step 3000: TB loss 0.0608 logZ 6.171
+    [shubert] step 4000: TB loss 0.1446 logZ 6.209
+    [shubert] step 5000: TB loss 0.0415 logZ 6.178
+    [shubert] step 6000: TB loss 0.0181 logZ 6.073
+    [shubert] step 7000: TB loss 0.0280 logZ 6.215
+    [shubert] step 8000: TB loss 0.0194 logZ 6.192
+    [shubert] step 9000: TB loss 0.0127 logZ 6.201
+    [shubert] step 10000: TB loss 0.0360 logZ 6.289
+    [shubert] step 11000: TB loss 0.0088 logZ 6.148
+    [shubert] step 11999: TB loss 0.0158 logZ 6.175
+[T1] shubert: L1 0.0825 (333.4s)
+    [diagonal] step 0: TB loss 4.7260 logZ 0.100
+    [diagonal] step 1000: TB loss 0.1990 logZ 6.091
+    [diagonal] step 2000: TB loss 0.1033 logZ 6.180
+    [diagonal] step 3000: TB loss 0.0240 logZ 6.198
+    [diagonal] step 4000: TB loss 0.0112 logZ 6.228
+    [diagonal] step 5000: TB loss 0.0102 logZ 6.300
+    [diagonal] step 6000: TB loss 0.0071 logZ 6.243
+    [diagonal] step 7000: TB loss 0.0072 logZ 6.252
+    [diagonal] step 8000: TB loss 0.0150 logZ 6.159
+    [diagonal] step 9000: TB loss 0.0044 logZ 6.205
+    [diagonal] step 10000: TB loss 0.0052 logZ 6.225
+    [diagonal] step 11000: TB loss 0.0033 logZ 6.219
+    [diagonal] step 11999: TB loss 0.0074 logZ 6.262
+[T1] diagonal: L1 0.0432 (359.3s)
+    [currin] step 0: TB loss 4.7985 logZ 0.100
+    [currin] step 1000: TB loss 0.1759 logZ 5.853
+    [currin] step 2000: TB loss 0.0297 logZ 6.313
+    [currin] step 3000: TB loss 0.0062 logZ 6.293
+    [currin] step 4000: TB loss 0.0091 logZ 6.322
+    [currin] step 5000: TB loss 0.0069 logZ 6.283
+    [currin] step 6000: TB loss 0.0018 logZ 6.307
+    [currin] step 7000: TB loss 0.0033 logZ 6.335
+    [currin] step 8000: TB loss 0.0044 logZ 6.325
+    [currin] step 9000: TB loss 0.0052 logZ 6.317
+    [currin] step 10000: TB loss 0.0157 logZ 6.306
+    [currin] step 11000: TB loss 0.0083 logZ 6.315
+    [currin] step 11999: TB loss 0.0024 logZ 6.328
+[T1] currin: L1 0.0307 (335.8s)
+    [sphere] step 0: TB loss 7.9663 logZ 0.100
+    [sphere] step 1000: TB loss 0.0813 logZ 5.867
+    [sphere] step 2000: TB loss 0.0735 logZ 5.795
+    [sphere] step 3000: TB loss 0.0242 logZ 5.919
+    [sphere] step 4000: TB loss 0.0209 logZ 5.904
+    [sphere] step 5000: TB loss 0.0389 logZ 5.896
+    [sphere] step 6000: TB loss 0.0083 logZ 5.853
+    [sphere] step 7000: TB loss 0.0036 logZ 5.918
+    [sphere] step 8000: TB loss 0.0230 logZ 5.891
+    [sphere] step 9000: TB loss 0.0059 logZ 5.869
+    [sphere] step 10000: TB loss 0.0061 logZ 5.898
+    [sphere] step 11000: TB loss 0.0089 logZ 5.888
+    [sphere] step 11999: TB loss 0.0356 logZ 5.845
+[T1] sphere: L1 0.1275 (388.4s)
+    [branin] step 0: TB loss 47.1023 logZ -0.100
+    [branin] step 1000: TB loss 1.0037 logZ 6.405
+    [branin] step 2000: TB loss 0.0308 logZ 6.698
+    [branin] step 3000: TB loss 0.0038 logZ 6.732
+    [branin] step 4000: TB loss 0.0143 logZ 6.722
+    [branin] step 5000: TB loss 0.0059 logZ 6.718
+    [branin] step 6000: TB loss 0.0093 logZ 6.723
+    [branin] step 7000: TB loss 0.0191 logZ 6.751
+    [branin] step 8000: TB loss 0.0038 logZ 6.734
+    [branin] step 9000: TB loss 0.0183 logZ 6.704
+    [branin] step 10000: TB loss 0.0074 logZ 6.663
+    [branin] step 11000: TB loss 0.0122 logZ 6.700
+    [branin] step 11999: TB loss 0.0144 logZ 6.749
+[T1] branin: L1 0.0490 (392.4s)
+    [circle1] step 0: TB loss 1.1476 logZ -0.100
+    [circle1] step 1000: TB loss 0.7439 logZ 7.308
+    [circle1] step 2000: TB loss 0.5815 logZ 7.494
+    [circle1] step 3000: TB loss 0.3691 logZ 7.541
+    [circle1] step 4000: TB loss 0.4386 logZ 7.550
+    [circle1] step 5000: TB loss 0.2430 logZ 7.698
+    [circle1] step 6000: TB loss 0.1168 logZ 7.623
+    [circle1] step 7000: TB loss 0.0753 logZ 7.665
+    [circle1] step 8000: TB loss 0.2042 logZ 7.682
+    [circle1] step 9000: TB loss 0.1989 logZ 7.571
+    [circle1] step 10000: TB loss 0.2131 logZ 7.662
+    [circle1] step 11000: TB loss 0.0581 logZ 7.623
+    [circle1] step 11999: TB loss 0.0887 logZ 7.707
+[T1] circle1: L1 0.2261 (247.1s)
+    [circle2] step 0: TB loss 2.1580 logZ 0.100
+    [circle2] step 1000: TB loss 1.6697 logZ 7.083
+    [circle2] step 2000: TB loss 1.0645 logZ 7.842
+    [circle2] step 3000: TB loss 0.4399 logZ 8.038
+    [circle2] step 4000: TB loss 0.5857 logZ 7.895
+    [circle2] step 5000: TB loss 0.1401 logZ 8.029
+    [circle2] step 6000: TB loss 0.2019 logZ 7.847
+    [circle2] step 7000: TB loss 0.1088 logZ 8.053
+    [circle2] step 8000: TB loss 0.1015 logZ 8.126
+    [circle2] step 9000: TB loss 0.2641 logZ 8.029
+    [circle2] step 10000: TB loss 0.1463 logZ 7.975
+    [circle2] step 11000: TB loss 0.2088 logZ 8.112
+    [circle2] step 11999: TB loss 0.2690 logZ 8.018
+[T1] circle2: L1 0.2768 (321.5s)
+    [circle3] step 0: TB loss 2.5647 logZ 0.100
+    [circle3] step 1000: TB loss 1.1037 logZ 7.052
+    [circle3] step 2000: TB loss 0.4449 logZ 7.362
+    [circle3] step 3000: TB loss 0.1652 logZ 7.400
+    [circle3] step 4000: TB loss 0.1753 logZ 7.374
+    [circle3] step 5000: TB loss 0.2128 logZ 7.372
+    [circle3] step 6000: TB loss 0.1803 logZ 7.550
+    [circle3] step 7000: TB loss 0.1394 logZ 7.578
+    [circle3] step 8000: TB loss 0.1701 logZ 7.523
+    [circle3] step 9000: TB loss 0.0462 logZ 7.629
+    [circle3] step 10000: TB loss 0.0854 logZ 7.524
+    [circle3] step 11000: TB loss 0.0835 logZ 7.458
+    [circle3] step 11999: TB loss 0.1103 logZ 7.534
+[T1] circle3: L1 0.3244 (279.0s)
+[T2] max L1 5.06e-16 | ablation median 0.483
+[T3] 8/12 operator settings enriched
+[T4] 524 adaptations in 0.06s, 0 updates
+[T5] sampling L1 0.0514
+{
+ "T1": false,
+ "T2": true,
+ "T2_ablation": true,
+ "T3": false,
+ "T5": false
+}

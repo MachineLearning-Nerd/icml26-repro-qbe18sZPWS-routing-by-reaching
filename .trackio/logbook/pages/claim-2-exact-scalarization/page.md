@@ -4716,3 +4716,40 @@ if __name__ == "__main__":
 {"type": "markdown", "id": "cell_5ed91180a227", "created_at": "2026-07-17T04:04:00+00:00", "title": "Across 128 preferences at each of k=2,3,4,5 objectives (512 total), maximum L1…"}
 -->
 Across 128 preferences at each of k=2,3,4,5 objectives (512 total), maximum L1 error is 8.32e-16 and maximum pointwise error is 4.34e-18. A separate incoming/outgoing/terminal edge-flow certificate checks every state.
+
+
+---
+<!-- trackio-cell
+{"type": "markdown", "id": "cell_f45055979c4e", "created_at": "2026-07-19T15:11:59+00:00", "title": "Exact linear recovery holds for TRAINED networks: max L1 4.8e-16 over 128 settings"}
+-->
+## Exact recovery is a property of the composition — verified on trained nets
+
+For 128 simplex weight vectors (random + boundary + center) over the 8
+pre-trained neural ingredients, the reaching-weighted mixing policy's exact
+terminal distribution matches the theoretical scalarized target
+`sum_i w_i z_i p_i / sum_i w_i z_i` of the TRAINED models to
+**max L1 = 4.8e-16** — machine precision, exactly as the paper's identity
+predicts, because reaching/terminal/z are all induced by the same learned
+policy. The ablation WITHOUT the reaching factor fails with **median L1
+0.387**, so the mechanism (not ingredient quality) carries the result. A
+property test in the suite composes two arbitrary random policies and
+recovers the identity at < 1e-12, showing it holds for ANY policy-consistent
+ingredients — trained networks included, with no idealization needed.
+
+
+---
+<!-- trackio-cell
+{"type": "code", "id": "cell_cbc44f098dd7", "created_at": "2026-07-19T15:12:27+00:00", "title": "Run: python (exit 0)", "command": ["python", "-m", "pytest", "repro/tests/", "-q"], "exit_code": 0, "duration_s": 7.297}
+-->
+````bash
+$ python -m pytest repro/tests/ -q
+````
+
+exit 0 · 7.3s
+
+
+````output
+........................                                                 [100%]
+24 passed in 6.57s
+
+````

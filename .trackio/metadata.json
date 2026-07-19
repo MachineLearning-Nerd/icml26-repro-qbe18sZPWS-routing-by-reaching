@@ -10,7 +10,7 @@
     "icml2026-repro",
     "paper-qbe18sZPWS"
   ],
-  "autosync": true,
+  "autosync": false,
   "private": false,
   "title": "Repro - Routing by Reaching",
   "last_page": "conclusion",

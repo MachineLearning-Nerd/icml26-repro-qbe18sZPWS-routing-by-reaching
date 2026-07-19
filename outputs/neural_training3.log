@@ -1,0 +1,66 @@
+    [shubert] loaded cached net
+[T1] shubert: L1 0.1146 (0.0s)
+    [diagonal] loaded cached net
+[T1] diagonal: L1 0.0197 (0.0s)
+    [currin] loaded cached net
+[T1] currin: L1 0.0153 (0.0s)
+    [sphere] loaded cached net
+[T1] sphere: L1 0.0778 (0.0s)
+    [branin] loaded cached net
+[T1] branin: L1 0.0322 (0.0s)
+/Users/dineshjinjala/Documents/AllCode/ICMLPapers/papers/icml26-repro-qbe18sZPWS-routing-by-reaching/repro/src/train_neural_gfns.py:146: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:823.)
+  log(f"    [{name}] step {step}: TB loss {float(loss):.4f} "
+    [circle1] step 0: TB loss 2.9235 logZ 0.100
+    [circle1] step 2000: TB loss 0.3387 logZ 7.584
+    [circle1] step 4000: TB loss 0.1059 logZ 7.589
+    [circle1] step 6000: TB loss 0.0686 logZ 7.716
+    [circle1] step 8000: TB loss 0.0798 logZ 7.570
+    [circle1] step 10000: TB loss 0.1166 logZ 7.617
+    [circle1] step 12000: TB loss 0.0745 logZ 7.654
+    [circle1] step 14000: TB loss 0.0336 logZ 7.729
+    [circle1] step 16000: TB loss 0.0285 logZ 7.646
+    [circle1] step 18000: TB loss 0.0274 logZ 7.713
+    [circle1] step 20000: TB loss 0.0048 logZ 7.698
+    [circle1] step 22000: TB loss 0.0951 logZ 7.694
+    [circle1] step 23999: TB loss 0.0117 logZ 7.699
+[T1] circle1: L1 0.1683 (1188.6s)
+    [circle2] step 0: TB loss 1.6955 logZ 0.100
+    [circle2] step 2000: TB loss 0.2750 logZ 8.009
+    [circle2] step 4000: TB loss 0.1217 logZ 7.990
+    [circle2] step 6000: TB loss 0.0980 logZ 7.915
+    [circle2] step 8000: TB loss 0.0527 logZ 8.087
+    [circle2] step 10000: TB loss 0.0959 logZ 8.136
+    [circle2] step 12000: TB loss 0.1048 logZ 8.112
+    [circle2] step 14000: TB loss 0.1242 logZ 8.070
+    [circle2] step 16000: TB loss 0.1702 logZ 8.136
+    [circle2] step 18000: TB loss 0.1016 logZ 8.145
+    [circle2] step 20000: TB loss 0.0455 logZ 8.161
+    [circle2] step 22000: TB loss 0.1833 logZ 8.150
+    [circle2] step 23999: TB loss 0.2488 logZ 8.141
+[T1] circle2: L1 0.1582 (1229.8s)
+    [circle3] step 0: TB loss 4.1895 logZ 0.100
+    [circle3] step 2000: TB loss 0.1611 logZ 7.398
+    [circle3] step 4000: TB loss 0.0922 logZ 7.455
+    [circle3] step 6000: TB loss 0.0395 logZ 7.483
+    [circle3] step 8000: TB loss 0.0798 logZ 7.499
+    [circle3] step 10000: TB loss 0.0309 logZ 7.540
+    [circle3] step 12000: TB loss 0.0621 logZ 7.615
+    [circle3] step 14000: TB loss 0.0480 logZ 7.571
+    [circle3] step 16000: TB loss 0.0509 logZ 7.576
+    [circle3] step 18000: TB loss 0.0313 logZ 7.548
+    [circle3] step 20000: TB loss 0.0116 logZ 7.599
+    [circle3] step 22000: TB loss 0.0542 logZ 7.591
+    [circle3] step 23999: TB loss 0.0139 logZ 7.591
+[T1] circle3: L1 0.1695 (886.1s)
+[T2] max L1 4.76e-16 | ablation median 0.387
+[T3] 9/12 operator settings enriched
+[T4] 524 adaptations in 0.06s, 0 updates
+[T5] sampling L1 0.0527
+{
+ "T1": false,
+ "T2": true,
+ "T2_ablation": true,
+ "T3": false,
+ "T5": true
+}
