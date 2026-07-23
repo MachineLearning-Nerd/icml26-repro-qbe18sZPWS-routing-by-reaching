@@ -1,0 +1,23 @@
+[project]
+name = "routing-by-reaching-reproduction"
+version = "0.1.0"
+description = "Claim-by-claim reproduction of arXiv:2602.21565"
+requires-python = "==3.10.*"
+dependencies = [
+  "gflownet @ git+https://github.com/recursionpharma/gflownet.git@f106cdeb6892214cbb528a3e06f4c721f4003175 ; sys_platform == 'linux' and platform_machine == 'x86_64'",
+  "marimo==0.16.5",
+  "matplotlib==3.8.2",
+  "numpy==1.26.4",
+  "pandas==2.2.0",
+  "pytest==9.0.2",
+  "seaborn==0.13.2",
+  "torch==2.6.0",
+  "torchgfn==2.4.1",
+]
+
+[tool.uv]
+find-links = ["https://data.pyg.org/whl/torch-2.6.0+cpu.html"]
+override-dependencies = ["torch==2.6.0", "torch-geometric==2.6.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["repro/tests"]
