@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 ARTIFACTS = ROOT / ".openresearch" / "artifacts"
 FIXED_COMMAND = "uv sync --frozen && uv run python repro/src/run_campaign.py"
-SEEDS = [604, 20260719]
+SEEDS = [604, 1337, 20260719]
 
 
 CLAIMS = {
@@ -40,7 +40,10 @@ CLAIMS = {
         "contract": (
             "Train the paper's neural ingredient GFNs, MOGFN, and HN-GFN on "
             "the 32x32 grid; evaluate exactly 128 simplex preferences for "
-            "each k=2..5, report per-seed uncertainty, and directly compare L1."
+            "each k=2..5 over seeds 604, 1337, and 20260719. Require ours "
+            "to beat both trained baselines in every seed/k cell, ours <=0.01 "
+            "for every aggregate k, and baseline aggregates within absolute "
+            "L1 0.02 of the paper."
         ),
     },
     3: {
@@ -70,7 +73,8 @@ CLAIMS = {
         "contract": (
             "With the same trained neural ingredients and 512 grid settings "
             "as Claim 2, remove only u_i(s), report paired L1 and uncertainty, "
-            "and require the full policy to improve in every k group."
+            "and require a paired improvement >=0.05 in every seed/k cell, "
+            "with ensemble aggregates within absolute L1 0.03 of the paper."
         ),
     },
     6: {
@@ -82,7 +86,9 @@ CLAIMS = {
         "contract": (
             "For every paper Figure-3/A6 nonlinear grid composition, directly "
             "compute delta, G, 1/Z_M, IQR outliers, and quantile-binned relative "
-            "deviation; high-G bins must be closer to 1/Z_M than low-G bins."
+            "deviation for three seeds. In every setting, the high-G decile "
+            "median relative deviation must be lower than the bottom-half "
+            "median and no greater than 0.25."
         ),
     },
 }
@@ -125,8 +131,10 @@ def git_sha() -> str:
     ).strip()
 
 
-def baseline_verdicts(neural: dict) -> dict[int, tuple[str, str]]:
-    return {
+def baseline_verdicts(
+    neural: dict, full_grid: dict | None = None
+) -> dict[int, tuple[str, str]]:
+    verdicts = {
         1: (
             "VERIFIED",
             "Retained full-scale exact theorem regression: 512/512 settings pass.",
@@ -150,6 +158,42 @@ def baseline_verdicts(neural: dict) -> dict[int, tuple[str, str]]:
             "high-G constancy metrics on the paper's trained models.",
         ),
     }
+    if full_grid is not None:
+        summary = full_grid["summary"]
+        aggregates = summary["aggregates"]
+        verdicts[2] = (
+            summary["claim_2"]["verdict"],
+            "Three-seed official 32x32 training: "
+            + ", ".join(
+                f"k={k} ours={aggregates['ours'][str(k)]['mean']:.4f}, "
+                f"MOGFN={aggregates['mogfn'][str(k)]['mean']:.4f}, "
+                f"HN-GFN={aggregates['hngfn'][str(k)]['mean']:.4f}"
+                for k in range(2, 6)
+            ),
+        )
+        verdicts[5] = (
+            summary["claim_5"]["verdict"],
+            "Paired three-seed no-reaching ablation: "
+            + ", ".join(
+                f"k={k} ensemble={aggregates['ensemble'][str(k)]['mean']:.4f} "
+                f"vs ours={aggregates['ours'][str(k)]['mean']:.4f}"
+                for k in range(2, 6)
+            ),
+        )
+        high_range = summary["claim_6"][
+            "high_g_median_relative_deviation_range"
+        ]
+        low_range = summary["claim_6"][
+            "low_g_median_relative_deviation_range"
+        ]
+        verdicts[6] = (
+            summary["claim_6"]["verdict"],
+            "Direct delta=u_M/N_M audit on all 12 Figure A6 settings and "
+            f"three seeds: high-G median relative-deviation range "
+            f"{high_range[0]:.4f}-{high_range[1]:.4f}; low-G range "
+            f"{low_range[0]:.4f}-{low_range[1]:.4f}.",
+        )
+    return verdicts
 
 
 def main() -> None:
@@ -178,11 +222,17 @@ def main() -> None:
         [sys.executable, "repro/src/profile_official_grid.py"],
         "official HyperGrid local-CPU profile",
     )
+    full_grid_log, full_grid_seconds = run_checked(
+        [sys.executable, "repro/src/run_full_grid_claims.py"],
+        "full seeded HyperGrid claims",
+    )
 
     exact = json.loads(exact_path.read_text())
     neural_path = ROOT / "outputs" / "neural_composition.json"
     neural = json.loads(neural_path.read_text())
-    verdicts = baseline_verdicts(neural)
+    full_grid_path = ARTIFACTS / "claim-2" / "full_grid_raw.json"
+    full_grid = json.loads(full_grid_path.read_text())
+    verdicts = baseline_verdicts(neural, full_grid)
 
     metadata = {
         "git_sha": git_sha(),
@@ -202,6 +252,7 @@ def main() -> None:
             "neural": neural_seconds,
             "independent_checker": checker_seconds,
             "official_grid_cpu_profile": profile_seconds,
+            "full_seeded_grid": full_grid_seconds,
         },
     }
     write_json(ARTIFACTS / "run_metadata.json", metadata)
@@ -222,12 +273,20 @@ def main() -> None:
             },
         )
         (claim_dir / "source_audit.md").write_text(source_audit)
+        method_scope = (
+            "The paper's published 32x32 architecture and 20,000-step "
+            "training configuration are run for three deterministic seeds. "
+            "Terminal distributions are enumerated exactly over all 1,024 "
+            "states."
+            if claim_id in (2, 5, 6)
+            else "The accepted exact full-grid theorem regression is rerun."
+        )
         (claim_dir / "method.md").write_text(
-            f"# Method\n\nBaseline method for Claim {claim_id}.\n\n"
+            f"# Method\n\n{method_scope}\n\n"
             f"Contract: {claim['contract']}\n\n"
             "Every accepted check is rerun by the fixed campaign command. "
-            "Later child branches may add code/config but not change the command "
-            "or locked environment.\n"
+            "Child branches vary committed code/config, never the command or "
+            "locked environment.\n"
         )
         (claim_dir / "limitations_and_deviations.md").write_text(
             f"# Limitations and deviations\n\n{assessment}\n"
@@ -246,13 +305,39 @@ def main() -> None:
             f"Observed baseline: {assessment}\n\n"
             f"Source: {claim['anchor']}.\n"
         )
+        if claim_id in (2, 5, 6):
+            (claim_dir / "independent_checker.txt").write_text(
+                (
+                    ARTIFACTS
+                    / "claim-2"
+                    / "full_grid_checker.txt"
+                ).read_text()
+            )
+            (claim_dir / "negative_control.txt").write_text(
+                (
+                    ARTIFACTS
+                    / "claim-2"
+                    / "full_grid_negative_control.txt"
+                ).read_text()
+            )
 
     shutil.copy2(neural_path, ARTIFACTS / "claim-2" / "raw_neural_summary.json")
     shutil.copy2(neural_path, ARTIFACTS / "claim-5" / "raw_neural_summary.json")
+    shutil.copy2(
+        full_grid_path,
+        ARTIFACTS / "claim-5" / "full_grid_raw.json",
+    )
+    shutil.copy2(
+        full_grid_path,
+        ARTIFACTS / "claim-6" / "full_grid_raw.json",
+    )
     (ARTIFACTS / "claim-1" / "runner_output.txt").write_text(exact_log)
     (ARTIFACTS / "claim-2" / "runner_output.txt").write_text(neural_log)
     (ARTIFACTS / "claim-2" / "cpu_profile_runner_output.txt").write_text(
         profile_log
+    )
+    (ARTIFACTS / "claim-2" / "full_grid_runner_output.txt").write_text(
+        full_grid_log
     )
 
     campaign_summary = {
@@ -280,6 +365,7 @@ def main() -> None:
                 / "profile.json"
             ).read_text()
         ),
+        "full_grid_summary": full_grid["summary"],
     }
     write_json(ARTIFACTS / "campaign_summary.json", campaign_summary)
 
