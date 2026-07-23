@@ -174,6 +174,10 @@ def main() -> None:
         [sys.executable, "-m", "pytest", "-q"],
         "independent pytest checker",
     )
+    profile_log, profile_seconds = run_checked(
+        [sys.executable, "repro/src/profile_official_grid.py"],
+        "official HyperGrid local-CPU profile",
+    )
 
     exact = json.loads(exact_path.read_text())
     neural_path = ROOT / "outputs" / "neural_composition.json"
@@ -197,6 +201,7 @@ def main() -> None:
             "exact": exact_seconds,
             "neural": neural_seconds,
             "independent_checker": checker_seconds,
+            "official_grid_cpu_profile": profile_seconds,
         },
     }
     write_json(ARTIFACTS / "run_metadata.json", metadata)
@@ -246,6 +251,9 @@ def main() -> None:
     shutil.copy2(neural_path, ARTIFACTS / "claim-5" / "raw_neural_summary.json")
     (ARTIFACTS / "claim-1" / "runner_output.txt").write_text(exact_log)
     (ARTIFACTS / "claim-2" / "runner_output.txt").write_text(neural_log)
+    (ARTIFACTS / "claim-2" / "cpu_profile_runner_output.txt").write_text(
+        profile_log
+    )
 
     campaign_summary = {
         "paper": "2602.21565v1",
@@ -264,6 +272,14 @@ def main() -> None:
             "max_flow_residual": exact["claim_2"]["max_flow_certificate_residual"],
         },
         "elapsed_seconds": time.perf_counter() - campaign_start,
+        "cpu_profile": json.loads(
+            (
+                ARTIFACTS
+                / "claim-2"
+                / "cpu-profile"
+                / "profile.json"
+            ).read_text()
+        ),
     }
     write_json(ARTIFACTS / "campaign_summary.json", campaign_summary)
 
