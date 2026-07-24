@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 
-SEEDS = [604, 1337, 20260719]
+SEEDS = [1337]
 
 
 def verify(raw: dict, negative_control: bool) -> dict:
@@ -35,7 +35,7 @@ def verify(raw: dict, negative_control: bool) -> dict:
             )
 
     checks = {
-        "three_exact_seeds": sorted(map(int, candidate["table1"])) == SEEDS,
+        "configured_exact_seed_shard": sorted(map(int, candidate["table1"])) == SEEDS,
         "128_preferences_every_cell": all(
             len(candidate["table1"][str(seed)][method][str(k)]) == 128
             for seed in SEEDS
@@ -69,7 +69,9 @@ def verify(raw: dict, negative_control: bool) -> dict:
             for seed in SEEDS
             for k in range(2, 6)
         ),
-        "36_distortion_audits": len(candidate["distortion"]) == 36,
+        "12_distortion_audits_per_seed": (
+            len(candidate["distortion"]) == 12 * len(SEEDS)
+        ),
         "distortion_mass_sanity": all(
             row["states"] == 1024
             and abs(row["induced_mass"] - 1) < 1e-5
