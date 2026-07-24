@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 ARTIFACTS = ROOT / ".openresearch" / "artifacts"
 FIXED_COMMAND = "uv sync --frozen && uv run python repro/src/run_campaign.py"
 SEEDS = [604, 1337, 20260719]
+CAPACITY_PROFILE_ONLY = True
 
 
 CLAIMS = {
@@ -247,6 +248,36 @@ def main() -> None:
         [sys.executable, "repro/src/profile_official_grid.py"],
         "official HyperGrid local-CPU profile",
     )
+    if CAPACITY_PROFILE_ONLY:
+        profile = json.loads(
+            (
+                ARTIFACTS
+                / "claim-2"
+                / "cpu-profile"
+                / "profile.json"
+            ).read_text()
+        )
+        print("\n===== SINGLE_THREAD_CAPACITY_PROFILE_JSON =====")
+        print(
+            json.dumps(
+                {
+                    "git_sha": git_sha(),
+                    "fixed_command": FIXED_COMMAND,
+                    "exact_regression_reran": True,
+                    "independent_checker_reran": True,
+                    "profile": profile,
+                    "runtime_seconds": {
+                        "exact": exact_seconds,
+                        "neural": neural_seconds,
+                        "independent_checker": checker_seconds,
+                        "single_thread_profile": profile_seconds,
+                    },
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return
     full_grid_log, full_grid_seconds = run_streamed(
         [sys.executable, "repro/src/run_full_grid_claims.py"],
         "full seeded HyperGrid claims",

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Profile the unmodified official HyperGrid training path on local CPU."""
+"""Profile the official HyperGrid worker used by the threaded full matrix."""
 
 from __future__ import annotations
 
@@ -31,7 +31,8 @@ def main() -> None:
     ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
     command = [
         sys.executable,
-        "official/grid/train_gfn.py",
+        "repro/src/run_grid_training_single_thread.py",
+        "train_gfn.py",
         "--device",
         "cpu",
         "--custom_dist",
@@ -70,6 +71,7 @@ def main() -> None:
     max_rss = resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss
     result = {
         "purpose": "capacity planning only; not claim evidence",
+        "worker_mode": "official entrypoint with one PyTorch CPU thread",
         "faithful_dimensions": {
             "grid": "32x32",
             "batch_size": 128,
