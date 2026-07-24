@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 ARTIFACTS = ROOT / ".openresearch" / "artifacts"
 FIXED_COMMAND = "uv sync --frozen && uv run python repro/src/run_campaign.py"
-SEEDS = [604, 1337, 20260719]
+SEEDS = [20260719]
 
 
 CLAIMS = {
@@ -186,9 +186,14 @@ def baseline_verdicts(
     if full_grid is not None:
         summary = full_grid["summary"]
         aggregates = summary["aggregates"]
+        scope = (
+            "Three-seed official 32x32 training"
+            if len(SEEDS) == 3
+            else f"Partial full-scale seed shard {SEEDS}"
+        )
         verdicts[2] = (
             summary["claim_2"]["verdict"],
-            "Three-seed official 32x32 training: "
+            scope + ": "
             + ", ".join(
                 f"k={k} ours={aggregates['ours'][str(k)]['mean']:.4f}, "
                 f"MOGFN={aggregates['mogfn'][str(k)]['mean']:.4f}, "

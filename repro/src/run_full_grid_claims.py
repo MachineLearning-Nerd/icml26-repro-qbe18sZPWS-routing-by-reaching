@@ -23,7 +23,7 @@ GRID = ROOT / "official" / "grid"
 ARTIFACTS = ROOT / ".openresearch" / "artifacts"
 OUTPUT = ARTIFACTS / "claim-2" / "full_grid_raw.json"
 TRAIN_ROOT = ARTIFACTS / "claim-2" / "trained"
-SEEDS = [604, 1337, 20260719]
+SEEDS = [20260719]
 N_ITERATIONS = 20_000
 N_PREFERENCES = 128
 TRAIN_WORKERS = 8
@@ -150,6 +150,15 @@ def train_one(spec: dict) -> dict:
 
 def aggregate(values: list[float]) -> dict:
     mean = statistics.fmean(values)
+    if len(values) == 1:
+        return {
+            "n_seeds": 1,
+            "mean": mean,
+            "sample_std": None,
+            "ci95_t": None,
+            "per_seed": values,
+            "partial_seed_shard": True,
+        }
     std = statistics.stdev(values)
     half_width = 4.302652729696142 * std / math.sqrt(len(values))
     return {
