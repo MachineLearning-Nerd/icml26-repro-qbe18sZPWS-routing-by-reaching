@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "all_candidate_json_valid": true,
+    "all_logbook_pages_exist": true,
+    "changed_index_snapshots_preserved": true,
+    "full_grid_raw_sha256": true,
+    "no_secret_patterns": true,
+    "only_text_files_in_upload_allowlist": true,
+    "protected_non_index_files_preserved": true,
+    "space_id_exact": true
+  },
+  "full_grid_raw_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "json_errors": [],
+  "missing_logbook_pages": [],
+  "non_text_changed_or_new": [],
+  "passed": true,
+  "secret_pattern_hits": [],
+  "upload_file_count": 81
+}
