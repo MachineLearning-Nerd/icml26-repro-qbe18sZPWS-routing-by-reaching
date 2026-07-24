@@ -13,6 +13,15 @@ def verify(root: Path) -> dict:
     summary = json.loads((root / "campaign_summary.json").read_text())
     exact = json.loads((root / "claim-1" / "raw_exact_summary.json").read_text())
     verdicts = {str(row["claim"]): row["verdict"] for row in summary["claims"]}
+    molecule = json.loads(
+        (root / "claim-3" / "molecule_prerequisite_audit.json").read_text()
+    )
+    molecule_checker = json.loads(
+        (root / "claim-3" / "molecule_audit_checker.json").read_text()
+    )
+    molecule_negative = json.loads(
+        (root / "claim-3" / "molecule_negative_control.json").read_text()
+    )
 
     checks = {
         "claim_1_verdict_verified": verdicts["1"] == "VERIFIED",
@@ -33,6 +42,21 @@ def verify(root: Path) -> dict:
         "no_inconclusive_or_toy_labels": all(
             value in {"VERIFIED", "FALSIFIED", "BLOCKED"}
             for value in verdicts.values()
+        ),
+        "claim_3_blocked_not_pass": verdicts["3"] == "BLOCKED",
+        "claim_4_blocked_not_pass": verdicts["4"] == "BLOCKED",
+        "molecule_audit_checker_passed": molecule_checker["passed"],
+        "molecule_negative_control_rejected": molecule_negative[
+            "validator_rejected"
+        ],
+        "molecule_checkpoints_missing": bool(
+            molecule["checkpoint_inventory"]["missing"]
+        ),
+        "molecule_comparator_surfaces_missing": bool(
+            molecule["source_surface_inventory"]["missing"]
+        ),
+        "molecule_threshold_drift_recorded": (
+            not molecule["threshold_inventory"]["matches_paper_v1"]
         ),
     }
     result = {"passed": all(checks.values()), "checks": checks}
