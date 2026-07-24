@@ -31,6 +31,7 @@ def main() -> None:
 
     torch.set_num_threads(1)
     torch.set_num_interop_threads(1)
+    sys.path.insert(0, str(GRID))
     sys.argv = [str(entrypoint), *sys.argv[2:]]
     runpy.run_path(str(entrypoint), run_name="__main__")
 
