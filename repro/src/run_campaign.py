@@ -170,8 +170,18 @@ def baseline_verdicts(
             f"cached neural ingredients have max target L1 "
             f"{max(v['terminal_L1_to_target'] for v in neural['ingredients'].values()):.3f}.",
         ),
-        3: ("BLOCKED", "No trained QM9 ingredient or conditional baseline checkpoints."),
-        4: ("BLOCKED", "No molecule classifier-guidance timing or 5,000-sample bin audit."),
+        3: (
+            "BLOCKED",
+            "The released tree has QM9 data and a GAP scorer, but lacks the "
+            "QM9 ingredient, MOGFN, and HN-GFN checkpoints required by the "
+            "exact 10-preference, 128-candidate GAP-SA comparison.",
+        ),
+        4: (
+            "BLOCKED",
+            "The released tree lacks molecule classifier-guidance code/checkpoints "
+            "and a timing benchmark; its QM9 SA/QED bin thresholds are 0.3, "
+            "whereas arXiv v1 Table 4 specifies 0.4.",
+        ),
         5: (
             "BLOCKED",
             "The exact and custom-neural ablations are controls, not the paper's "
@@ -251,6 +261,10 @@ def main() -> None:
         [sys.executable, "repro/src/run_full_grid_claims.py"],
         "full seeded HyperGrid claims",
     )
+    molecule_log, molecule_seconds = run_checked(
+        [sys.executable, "repro/src/audit_molecule_claims.py"],
+        "molecule prerequisite audit",
+    )
 
     exact = json.loads(exact_path.read_text())
     neural_path = ROOT / "outputs" / "neural_composition.json"
@@ -278,6 +292,7 @@ def main() -> None:
             "independent_checker": checker_seconds,
             "official_grid_cpu_profile": profile_seconds,
             "full_seeded_grid": full_grid_seconds,
+            "molecule_prerequisite_audit": molecule_seconds,
         },
     }
     write_json(ARTIFACTS / "run_metadata.json", metadata)
@@ -363,6 +378,12 @@ def main() -> None:
     )
     (ARTIFACTS / "claim-2" / "full_grid_runner_output.txt").write_text(
         full_grid_log
+    )
+    (ARTIFACTS / "claim-3" / "molecule_audit_runner_output.txt").write_text(
+        molecule_log
+    )
+    (ARTIFACTS / "claim-4" / "molecule_audit_runner_output.txt").write_text(
+        molecule_log
     )
 
     campaign_summary = {
