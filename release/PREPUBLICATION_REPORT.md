@@ -211,6 +211,24 @@ orx update
 orx exp cancel 69f08fe8-577f-4941-ba0d-94cdcf93809c
 ```
 
+### Approved publication and remote verification
+
+```text
+hf auth whoami
+git ls-remote https://huggingface.co/spaces/DineshAI/qbe18sZPWS refs/heads/main
+hf upload DineshAI/qbe18sZPWS <81-file-staging-directory> . --repo-type space --revision main --commit-message "Add full-scale claim evidence and release gate"
+git push -u origin release/published-space-mirror
+git push origin HEAD:main
+git ls-remote origin refs/heads/main
+```
+
+The `hf upload` preflight made no commit because it unnecessarily called the
+rate-limited repository-creation endpoint. Publication therefore used
+`HfApi.create_commit` directly against the existing Space, with 81
+`CommitOperationAdd` entries and the judged revision supplied as
+`parent_commit`; no delete operation was present. Independent post-commit
+downloads verified 81/81 SHA-256 entries.
+
 Read-only inspection commands (`orx exp status`, `orx runs`, `orx logs`,
 `git diff`, `git status`, `find`, `rg`, `sed`, `jq`, `shasum`, and image
 inspection) were used throughout. No unmanaged `pip`, conda, GPU command, or
