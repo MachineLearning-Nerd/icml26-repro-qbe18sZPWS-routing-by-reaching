@@ -22,7 +22,9 @@ No score increase is claimed. Only a new live-judge verdict can change `4/12`.
 - **Cumulative run:** `54806ee5-bb7c-4255-84cc-36b090052424` — local CPU, 2m25s, passed
 - **Publication-candidate branch:** `orx/illustrated-report-and-publication-candidate`
 - **Publication-candidate SHA/run:** `6a25075a85156e2e1838386f01a62295f11f2adb` / `19d4a988-ec93-4552-9919-55d98b381d71` — local CPU, 1m25s, passed
-- **GitHub main:** confirmed by `git ls-remote` at `6a25075a85156e2e1838386f01a62295f11f2adb`
+- **GitHub main:** contains publication surface `6a25075…` plus this release
+  report; the exact remote SHA is reported after the final push rather than
+  self-referenced inside its own commit.
 
 The fixed run command was identical at every formal node:
 
