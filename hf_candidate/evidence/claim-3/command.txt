@@ -1,0 +1,1 @@
+uv sync --frozen && uv run python repro/src/run_campaign.py

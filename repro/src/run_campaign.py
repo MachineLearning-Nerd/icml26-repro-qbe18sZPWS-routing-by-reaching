@@ -277,6 +277,18 @@ def main() -> None:
             f"Claim {claim_id} negative control",
         )
         claim_checker_seconds[f"{claim_id}_negative"] = negative_seconds
+    report_figure_log, report_figure_seconds = run_checked(
+        [
+            sys.executable,
+            "repro/src/build_report_figures.py",
+            "--output",
+            str(ARTIFACTS / "report" / "images"),
+        ],
+        "report figure regeneration",
+    )
+    (ARTIFACTS / "report" / "figure_runner_output.txt").write_text(
+        report_figure_log
+    )
 
     metadata = {
         "git_sha": git_sha(),
@@ -304,6 +316,7 @@ def main() -> None:
             "independent_checker": checker_seconds,
             "molecule_prerequisite_audit": molecule_seconds,
             "claim_evidence_checkers": claim_checker_seconds,
+            "report_figures": report_figure_seconds,
         },
     }
     write_json(ARTIFACTS / "run_metadata.json", metadata)

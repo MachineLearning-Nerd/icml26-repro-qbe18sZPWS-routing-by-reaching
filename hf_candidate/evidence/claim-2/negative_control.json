@@ -1,0 +1,64 @@
+{
+  "checks": {
+    "128_preferences_every_cell": true,
+    "all_48_models_recorded": true,
+    "all_l1_in_valid_range": true,
+    "immutable_parent_raw_sha256": true,
+    "observed_ours_means_materially_above_point": false,
+    "ours_beats_both_baselines_every_seed_and_k": true,
+    "paper_ours_point_below_every_95pct_ci": true,
+    "paper_ours_point_is_0_003_each_k": true,
+    "paper_scale_32x32": true,
+    "paper_training_20000_steps": true,
+    "paper_v1_contract": true,
+    "recorded_aggregates_recompute": false,
+    "three_exact_seeds": true,
+    "trained_baselines_within_0_02_of_paper": true
+  },
+  "claim": 2,
+  "expected_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "input_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "metrics": {
+    "observed_ours": {
+      "2": {
+        "ci95_t": [
+          0.0030000000000000005,
+          0.0030000000000000005
+        ],
+        "mean": 0.0030000000000000005
+      },
+      "3": {
+        "ci95_t": [
+          0.0030000000000000005,
+          0.0030000000000000005
+        ],
+        "mean": 0.0030000000000000005
+      },
+      "4": {
+        "ci95_t": [
+          0.0030000000000000005,
+          0.0030000000000000005
+        ],
+        "mean": 0.0030000000000000005
+      },
+      "5": {
+        "ci95_t": [
+          0.0030000000000000005,
+          0.0030000000000000005
+        ],
+        "mean": 0.0030000000000000005
+      }
+    },
+    "paper_ours": {
+      "2": 0.003,
+      "3": 0.003,
+      "4": 0.003,
+      "5": 0.003
+    },
+    "qualitative_ordering_verified": true,
+    "rounding_limitation": "The contract adjudicates the exact printed point 0.003. A three-decimal rounding interval would overlap the k=4 CI."
+  },
+  "negative_control": true,
+  "passed": false,
+  "verdict": "FALSIFIED"
+}

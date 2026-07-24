@@ -1,0 +1,11 @@
+{
+  "allowed_verdicts": [
+    "VERIFIED",
+    "FALSIFIED",
+    "BLOCKED"
+  ],
+  "claim": 1,
+  "machine_checkable_contract": "On the shared 32x32 DAG at beta=1, for k=2..5 and 128 preferences per k, require max terminal L1 < 1e-12 and an independent flow-conservation residual < 1e-11.",
+  "paper_result": "Exact recovery for every admissible linear scalarization.",
+  "source_anchor": "arXiv v1, Proposition 4.1, Section 4.2, Appendix A.1"
+}

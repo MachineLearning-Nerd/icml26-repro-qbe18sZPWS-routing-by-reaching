@@ -1,0 +1,11 @@
+{
+  "allowed_verdicts": [
+    "VERIFIED",
+    "FALSIFIED",
+    "BLOCKED"
+  ],
+  "claim": 5,
+  "machine_checkable_contract": "With the same trained neural ingredients and 512 grid settings as Claim 2, remove only u_i(s), report paired L1 and uncertainty, and require a paired improvement >=0.05 in every seed/k cell, with ensemble aggregates within absolute L1 0.03 of the paper.",
+  "paper_result": "No-reaching ensemble L1 0.098-0.117 versus ours 0.003.",
+  "source_anchor": "arXiv v1, Sections 5.1-5.2, Table 1"
+}

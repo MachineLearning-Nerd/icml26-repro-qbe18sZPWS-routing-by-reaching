@@ -1,0 +1,55 @@
+{
+  "checks": {
+    "128_preferences_every_cell": true,
+    "all_48_models_recorded": true,
+    "all_l1_in_valid_range": true,
+    "ensemble_aggregates_within_0_03_of_paper": false,
+    "immutable_parent_raw_sha256": true,
+    "paired_improvement_at_least_0_05_every_seed_and_k": false,
+    "paper_scale_32x32": true,
+    "paper_training_20000_steps": true,
+    "paper_v1_contract": true,
+    "recorded_aggregates_recompute": false,
+    "three_exact_seeds": true
+  },
+  "claim": 5,
+  "expected_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "input_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "metrics": {
+    "observed_ensemble": {
+      "2": 0.010819336902689733,
+      "3": 0.007929378891276428,
+      "4": 0.007243891280571309,
+      "5": 0.007110043074135319
+    },
+    "paired_ensemble_minus_ours": {
+      "1337": {
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0
+      },
+      "20260719": {
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0
+      },
+      "604": {
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0
+      }
+    },
+    "paper_ensemble": {
+      "2": 0.117,
+      "3": 0.098,
+      "4": 0.113,
+      "5": 0.111
+    }
+  },
+  "negative_control": true,
+  "passed": false,
+  "verdict": "VERIFIED"
+}
