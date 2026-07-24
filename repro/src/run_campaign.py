@@ -112,6 +112,31 @@ def run_checked(args: list[str], name: str) -> tuple[str, float]:
     return proc.stdout, elapsed
 
 
+def run_streamed(args: list[str], name: str) -> tuple[str, float]:
+    """Run a long subprocess while preserving its complete stdout evidence."""
+    start = time.perf_counter()
+    print(f"\n===== {name} (streaming) =====", flush=True)
+    proc = subprocess.Popen(
+        args,
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        bufsize=1,
+    )
+    lines = []
+    assert proc.stdout is not None
+    for line in proc.stdout:
+        print(line, end="", flush=True)
+        lines.append(line)
+    returncode = proc.wait()
+    elapsed = time.perf_counter() - start
+    print(f"===== {name} completed ({elapsed:.2f}s) =====", flush=True)
+    if returncode:
+        raise RuntimeError(f"{name} exited {returncode}")
+    return "".join(lines), elapsed
+
+
 def write_json(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
@@ -222,7 +247,7 @@ def main() -> None:
         [sys.executable, "repro/src/profile_official_grid.py"],
         "official HyperGrid local-CPU profile",
     )
-    full_grid_log, full_grid_seconds = run_checked(
+    full_grid_log, full_grid_seconds = run_streamed(
         [sys.executable, "repro/src/run_full_grid_claims.py"],
         "full seeded HyperGrid claims",
     )

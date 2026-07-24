@@ -26,6 +26,7 @@ TRAIN_ROOT = ARTIFACTS / "claim-2" / "trained"
 SEEDS = [604, 1337, 20260719]
 N_ITERATIONS = 20_000
 N_PREFERENCES = 128
+TRAIN_WORKERS = 8
 BASE_REWARDS = [
     "shubert",
     "diagonal",
@@ -101,7 +102,8 @@ def train_one(spec: dict) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
     command = [
         sys.executable,
-        str(GRID / spec["script"]),
+        str(ROOT / "repro" / "src" / "run_grid_training_single_thread.py"),
+        spec["script"],
         "--device",
         "cpu",
         "--seed",
@@ -616,10 +618,11 @@ def summarize(raw: dict) -> dict:
 def main() -> None:
     campaign_start = time.perf_counter()
     specs = training_specs()
-    max_workers = min(4, max(1, (os.cpu_count() or 2) // 2))
+    max_workers = min(TRAIN_WORKERS, max(1, os.cpu_count() or 1))
     print(
         f"Training {len(specs)} faithful models with {max_workers} "
-        f"concurrent CPU workers"
+        "concurrent single-threaded CPU workers",
+        flush=True,
     )
     training = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as pool:
@@ -631,7 +634,8 @@ def main() -> None:
                 "TRAINED "
                 f"seed={result['seed']} kind={result['kind']} "
                 f"name={result['name']} seconds={result['elapsed_seconds']:.2f} "
-                f"sha256={result['checkpoint_sha256']}"
+                f"sha256={result['checkpoint_sha256']}",
+                flush=True,
             )
 
     modules = load_grid_modules()
@@ -652,7 +656,7 @@ def main() -> None:
         "distortion": [],
     }
     for seed in SEEDS:
-        print(f"EVALUATING_TABLE1 seed={seed}")
+        print(f"EVALUATING_TABLE1 seed={seed}", flush=True)
         raw["table1"][str(seed)] = {
             method: {} for method in ("ours", "ensemble", "mogfn", "hngfn")
         }
@@ -676,7 +680,8 @@ def main() -> None:
                     f"{method}="
                     f"{statistics.fmean(raw['table1'][str(seed)][method][str(k)]):.6f}"
                     for method in ("ours", "ensemble", "mogfn", "hngfn")
-                )
+                ),
+                flush=True,
             )
         for rewards, custom_dist, mixing_type in distortion_specs():
             row = distortion_setting(
@@ -687,7 +692,8 @@ def main() -> None:
                 "DISTORTION "
                 f"seed={seed} setting={custom_dist} "
                 f"high={row['high_g_median_relative_deviation']:.6f} "
-                f"low={row['low_g_median_relative_deviation']:.6f}"
+                f"low={row['low_g_median_relative_deviation']:.6f}",
+                flush=True,
             )
 
     raw["elapsed_seconds"] = time.perf_counter() - campaign_start
