@@ -21,7 +21,10 @@ Read the [illustrated technical report](reports/routing-by-reaching-reproduction
 | Reaching ablation | `0.098–0.117` vs `0.003` | `0.1030–0.1239` vs `0.0071–0.0108` | **VERIFIED** |
 | Primary nonlinear distortion | Approximately constant in high-G regions | Six of six primary rows pass; 5/36 appendix reversals disclosed | **VERIFIED**, primary scope |
 
-No toy result is presented as full-scale. No new live-judge score is claimed, and the existing Hugging Face Space has not been updated.
+No toy result is presented as full-scale. The approved text-only evidence was
+published to the existing [Hugging Face Space revision
+`1546ac7f`](https://huggingface.co/spaces/DineshAI/qbe18sZPWS/commit/1546ac7f0d7c98d2077e97db46b3c9b62809ecc4)
+and is awaiting a live judge pass. No new score is claimed.
 
 ## Experiment log
 

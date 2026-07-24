@@ -1,0 +1,279 @@
+{
+  "blockers": [
+    "missing_required_model_checkpoints",
+    "missing_required_comparator_or_timing_code",
+    "locked_environment_import_incompatibility",
+    "released_qm9_bin_thresholds_differ_from_paper_v1"
+  ],
+  "checkpoint_inventory": {
+    "actual_checkpoint_files": [
+      "official/mols/data/mxmnet_gap_model.pt"
+    ],
+    "missing": [
+      "fragment_classifier_guidance",
+      "fragment_qed_ingredient",
+      "fragment_sa_ingredient",
+      "fragment_seh_ingredient",
+      "qm9_classifier_guidance",
+      "qm9_gap_ingredient",
+      "qm9_hngfn_gap_sa",
+      "qm9_mogfn_gap_sa",
+      "qm9_sa_ingredient"
+    ],
+    "required": {
+      "fragment_classifier_guidance": {
+        "expected": "unreleased: molecule classifier-guidance checkpoint",
+        "present": false
+      },
+      "fragment_qed_ingredient": {
+        "expected": "official/mols/ckpts/base-gfn/frag/subtb/qed_seed604/model_state.pt",
+        "present": false
+      },
+      "fragment_sa_ingredient": {
+        "expected": "official/mols/ckpts/base-gfn/frag/subtb/sa_seed604/model_state.pt",
+        "present": false
+      },
+      "fragment_seh_ingredient": {
+        "expected": "official/mols/ckpts/base-gfn/frag/subtb/seh_seed604/model_state.pt",
+        "present": false
+      },
+      "qm9_classifier_guidance": {
+        "expected": "unreleased: molecule classifier-guidance checkpoint",
+        "present": false
+      },
+      "qm9_gap_ingredient": {
+        "expected": "official/mols/ckpts/base-gfn/qm9/subtb/gap_seed604/model_state.pt",
+        "present": false
+      },
+      "qm9_hngfn_gap_sa": {
+        "expected": "unreleased: trained QM9 HN-GFN GAP-SA checkpoint",
+        "present": false
+      },
+      "qm9_mogfn_gap_sa": {
+        "expected": "unreleased: trained QM9 MOGFN GAP-SA checkpoint",
+        "present": false
+      },
+      "qm9_sa_ingredient": {
+        "expected": "official/mols/ckpts/base-gfn/qm9/subtb/sa_seed604/model_state.pt",
+        "present": false
+      }
+    },
+    "scorer_not_gfn_checkpoint": true
+  },
+  "claim_3_contract": {
+    "aggregate": "mean of per-preference top-10 scalarized reward",
+    "beta": 32,
+    "candidates_per_preference": 128,
+    "domain": "atom-based QM9 GAP-SA",
+    "paper_result": {
+      "HN-GFN": 0.805,
+      "MOGFN": 0.816,
+      "ours": 0.876
+    },
+    "preferences": 10
+  },
+  "claim_3_verdict": "BLOCKED",
+  "claim_4_contract": {
+    "accuracy_samples": 5000,
+    "methods": [
+      "routing_by_reaching",
+      "classifier_guidance"
+    ],
+    "operators": [
+      "harmonic_mean",
+      "contrast"
+    ],
+    "qm9_v1_thresholds_gap_sa_qed": [
+      0.85,
+      0.4,
+      0.4
+    ],
+    "timing_samples": 1000
+  },
+  "claim_4_verdict": "BLOCKED",
+  "data_inventory": {
+    "mxmnet_gap_scorer": {
+      "bytes": 14850267,
+      "present": true,
+      "role": "GAP property scorer; not a generative GFlowNet checkpoint",
+      "sha256": "446f702bbd4ce6c606e7dd1781190b7a4d30b6a7c2441b71859c2a042d6a157c",
+      "torch_zip_container": true
+    },
+    "qm9_h5": {
+      "bytes": 23850664,
+      "hdf5": {
+        "columns": [],
+        "error": "ImportError: Missing optional dependency 'pytables'.  Use pip or conda to install pytables.",
+        "keys": [],
+        "opened": false,
+        "shape": null
+      },
+      "present": true,
+      "sha256": "4dd78db2b5256b6545efeb5f2e6b023b0937e9864573cd64f68b6af4f68229f2"
+    }
+  },
+  "git_sha": "f54e39476739a9184b3712e5308e9e4d7fd74d5e",
+  "import_inventory": {
+    "all_ok": false,
+    "checks": {
+      "botorch": {
+        "error": "No module named 'botorch'",
+        "error_type": "ModuleNotFoundError",
+        "ok": false
+      },
+      "gfn": {
+        "error": null,
+        "error_type": null,
+        "ok": true
+      },
+      "gfn_composition.algo.mixture_graph_sampling_subtb": {
+        "error": "No module named 'gflownet'",
+        "error_type": "ModuleNotFoundError",
+        "ok": false
+      },
+      "gfn_composition.tasks.qm9": {
+        "error": "No module named 'rdkit'",
+        "error_type": "ModuleNotFoundError",
+        "ok": false
+      },
+      "gfn_composition.tasks.qm9_moo": {
+        "error": "No module named 'rdkit'",
+        "error_type": "ModuleNotFoundError",
+        "ok": false
+      },
+      "pandas": {
+        "error": null,
+        "error_type": null,
+        "ok": true
+      },
+      "rdkit": {
+        "error": "No module named 'rdkit'",
+        "error_type": "ModuleNotFoundError",
+        "ok": false
+      },
+      "tables": {
+        "error": "No module named 'tables'",
+        "error_type": "ModuleNotFoundError",
+        "ok": false
+      },
+      "torch_geometric": {
+        "error": null,
+        "error_type": null,
+        "ok": true
+      }
+    }
+  },
+  "official_molecule_tree_sha256": "8ebf16e2ff5480b8d7ff6b840960620136dbd326143c1cc153d406e76aeb401b",
+  "packages": {
+    "botorch": null,
+    "gflownet": null,
+    "pandas": "2.2.0",
+    "rdkit": null,
+    "tables": null,
+    "torch": "2.6.0",
+    "torch-geometric": "2.6.1"
+  },
+  "paper": "arXiv:2602.21565v1",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "purpose": "prerequisite audit; BLOCKED is not experimental verification",
+  "python": "3.10.18 (main, Jun  3 2025, 18:23:41) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "source_surface_inventory": {
+    "diagnostic_token_counts": {
+      "HN-GFN": 0,
+      "MOGFN": 0,
+      "classifier guidance": 0,
+      "perf_counter": 0,
+      "time.time": 0
+    },
+    "missing": [
+      "molecule_classifier_guidance",
+      "molecule_inference_timing_benchmark",
+      "qm9_hngfn",
+      "qm9_mogfn"
+    ],
+    "molecule_files": [
+      "official/mols/data/mxmnet_gap_model.pt",
+      "official/mols/data/qm9.h5",
+      "official/mols/eval_gfn.py",
+      "official/mols/eval_logical_operators.py",
+      "official/mols/eval_scalarization.py",
+      "official/mols/gfn_composition/__init__.py",
+      "official/mols/gfn_composition/algo/__init__.py",
+      "official/mols/gfn_composition/algo/mixture_graph_sampling_subtb.py",
+      "official/mols/gfn_composition/algo/mixture_graph_sampling_tb.py",
+      "official/mols/gfn_composition/algo/mixture_trajectory_balance.py",
+      "official/mols/gfn_composition/data/__init__.py",
+      "official/mols/gfn_composition/data/mixture_data_source.py",
+      "official/mols/gfn_composition/data/qm9_dataset.py",
+      "official/mols/gfn_composition/tasks/__init__.py",
+      "official/mols/gfn_composition/tasks/_aux.py",
+      "official/mols/gfn_composition/tasks/qm9.py",
+      "official/mols/gfn_composition/tasks/qm9_moo.py",
+      "official/mols/gfn_composition/tasks/seh_frag.py",
+      "official/mols/gfn_composition/tasks/seh_frag_moo.py",
+      "official/mols/gfn_composition/utils/__init__.py",
+      "official/mols/gfn_composition/utils/analysis.py",
+      "official/mols/gfn_composition/utils/eval_config.py",
+      "official/mols/gfn_composition/utils/eval_loops.py",
+      "official/mols/gfn_composition/utils/loading.py",
+      "official/mols/gfn_composition/utils/misc.py",
+      "official/mols/gfn_composition/utils/postprocess.py",
+      "official/mols/gfn_composition/utils/simplex.py",
+      "official/mols/gfn_composition/utils/sqlite_log.py",
+      "official/mols/scripts/eval_base_gfn.sh",
+      "official/mols/scripts/eval_logical_operators.sh",
+      "official/mols/scripts/eval_scalarization.sh",
+      "official/mols/scripts/train_base_gfn.sh",
+      "official/mols/train_gfn.py"
+    ],
+    "required": {
+      "ingredient_training": {
+        "paths": [
+          "official/mols/train_gfn.py"
+        ],
+        "present": true
+      },
+      "molecule_classifier_guidance": {
+        "paths": [],
+        "present": false
+      },
+      "molecule_inference_timing_benchmark": {
+        "paths": [],
+        "present": false
+      },
+      "proposed_molecule_mixer": {
+        "paths": [
+          "official/mols/eval_scalarization.py",
+          "official/mols/eval_logical_operators.py"
+        ],
+        "present": true
+      },
+      "qm9_hngfn": {
+        "paths": [],
+        "present": false
+      },
+      "qm9_mogfn": {
+        "paths": [],
+        "present": false
+      }
+    }
+  },
+  "threshold_inventory": {
+    "matches_paper_v1": false,
+    "paper_v1_qm9_gap_sa_qed": [
+      0.85,
+      0.4,
+      0.4
+    ],
+    "released_code_qm9_gap_sa_qed": [
+      0.85,
+      0.3,
+      0.3
+    ],
+    "source": "official/mols/eval_logical_operators.py:BIN_THRESHOLDS"
+  },
+  "upstream_gflownet": {
+    "documented_tag": "v0.2.0",
+    "resolved_commit": "f106cdeb6892214cbb528a3e06f4c721f4003175"
+  }
+}

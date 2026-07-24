@@ -1,0 +1,17 @@
+{
+  "approved_additive_index_changes": [
+    "logbook.json",
+    "pages/index.md"
+  ],
+  "candidate_file_count_before_release_metadata": 141,
+  "changed_index_byte_identical_snapshots": {
+    "logbook.json": true,
+    "pages/index.md": true
+  },
+  "entire_old_tree_is_reconstructable": true,
+  "missing_old_paths": [],
+  "old_non_index_file_set_is_byte_identical_subset": true,
+  "protected_file_count": 63,
+  "protected_revision": "61f1a9cbf8bdb3b3b398f9f552e514c27ae59860",
+  "unexpectedly_changed_old_paths": []
+}

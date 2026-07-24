@@ -1,0 +1,11 @@
+{
+  "allowed_verdicts": [
+    "VERIFIED",
+    "FALSIFIED",
+    "BLOCKED"
+  ],
+  "claim": 4,
+  "machine_checkable_contract": "On the official molecule sampler, time 1,000 logical-composition samples for both methods after warmup and evaluate target-bin accuracy on 5,000 samples for harmonic mean and contrast.",
+  "paper_result": "Logical composition is 40-70x faster than classifier guidance and has comparable or higher target-bin accuracy.",
+  "source_anchor": "arXiv v1, Sections 6.2-6.3, Tables 4-5"
+}

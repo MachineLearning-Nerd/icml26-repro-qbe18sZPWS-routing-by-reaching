@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "blocker_checkpoint_recorded": true,
+    "blocker_surface_recorded": true,
+    "claim_3_quantifiers_recorded": true,
+    "claim_4_quantifiers_recorded": true,
+    "gap_scorer_not_misclassified": true,
+    "gap_scorer_present": true,
+    "qm9_data_present": true,
+    "required_checkpoints_missing": true,
+    "required_surfaces_missing": true,
+    "threshold_drift_recorded": true,
+    "verdicts_are_blocked": true
+  },
+  "passed": true
+}

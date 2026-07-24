@@ -1,0 +1,11 @@
+{
+  "allowed_verdicts": [
+    "VERIFIED",
+    "FALSIFIED",
+    "BLOCKED"
+  ],
+  "claim": 3,
+  "machine_checkable_contract": "Using atom-based QM9 at beta=32, evaluate 10 evenly spaced GAP-SA preferences, 128 candidates each, and aggregate the per-preference top-10 scalarized reward for ours, MOGFN, and HN-GFN.",
+  "paper_result": "QM9 GAP-SA mean top-10 reward: ours 0.876, MOGFN 0.816, HN-GFN 0.805.",
+  "source_anchor": "arXiv v1, Sections 6.1-6.2, Table 3"
+}

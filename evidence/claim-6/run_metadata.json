@@ -1,0 +1,41 @@
+{
+  "archived_full_grid_evidence": {
+    "replayed_not_retrained": true,
+    "sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+    "source_elapsed_seconds": 37971.130893458,
+    "source_git_sha": "6c89eebcb076aab1076272d38a86529d649e2709",
+    "source_run_id": "fd92e2bc-ea94-4004-a820-62abf3e5e917"
+  },
+  "fixed_command": "uv sync --frozen && uv run python repro/src/run_campaign.py",
+  "git_sha": "f54e39476739a9184b3712e5308e9e4d7fd74d5e",
+  "logical_cpu_count": 8,
+  "machine": "arm64",
+  "packages": {
+    "numpy": "1.26.4",
+    "pytest": "9.0.2",
+    "torch": "2.6.0",
+    "torchgfn": "2.4.1"
+  },
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "python": "3.10.18 (main, Jun  3 2025, 18:23:41) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "runtime_seconds": {
+    "claim_evidence_checkers": {
+      "2": 0.16318375000264496,
+      "2_negative": 0.09235333299875492,
+      "5": 0.08511129199905554,
+      "5_negative": 0.12327316700248048,
+      "6": 0.12515170899860095,
+      "6_negative": 0.1109422080044169
+    },
+    "exact": 20.61542491599539,
+    "independent_checker": 13.380403166003816,
+    "molecule_prerequisite_audit": 36.0574228330006,
+    "neural": 17.266619458001514
+  },
+  "seeds": [
+    604,
+    1337,
+    20260719
+  ],
+  "uv_lock_sha256": "240aafac42d8dd4388c1f1e2239dbd5d530de02b3f0286232a5a06bc360c22e4"
+}

@@ -1,0 +1,11 @@
+{
+  "allowed_verdicts": [
+    "VERIFIED",
+    "FALSIFIED",
+    "BLOCKED"
+  ],
+  "claim": 2,
+  "machine_checkable_contract": "Train the paper's neural ingredient GFNs, MOGFN, and HN-GFN on the 32x32 grid; evaluate exactly 128 simplex preferences for each k=2..5 over seeds 604, 1337, and 20260719. FALSIFY the exact printed ours=0.003 result only if 0.003 lies below the two-sided 95% t interval for every k. Independently require ours to beat both trained baselines in every seed/k cell and baseline aggregates to be within absolute L1 0.02 of the paper.",
+  "paper_result": "Table 1 L1: ours 0.003 for k=2..5; MOGFN 0.021-0.048; HN-GFN 0.017-0.035.",
+  "source_anchor": "arXiv v1, Sections 5.1-5.2, Table 1"
+}

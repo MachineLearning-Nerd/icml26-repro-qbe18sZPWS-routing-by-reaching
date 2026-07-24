@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "title": "Repro - Routing by Reaching",
+  "emoji": "\ud83c\udfaf",
+  "space_id": "DineshAI/qbe18sZPWS",
+  "paper": {
+    "arxiv_id": "2602.21565",
+    "openreview_id": "qbe18sZPWS"
+  },
+  "tags": [
+    "icml2026-repro",
+    "paper-qbe18sZPWS"
+  ],
+  "updated_at": "2026-07-24T17:10:00+05:30",
+  "root": {
+    "slug": "index",
+    "title": "Repro - Routing by Reaching",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "claim-1-training-free-composition",
+        "title": "Claim 1 - Training-free composition",
+        "file": "pages/claim-1-training-free-composition/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-2-exact-scalarization",
+        "title": "Claim 2 - Exact scalarization",
+        "file": "pages/claim-2-exact-scalarization/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-3-nonlinear-operators",
+        "title": "Claim 3 - Nonlinear operators",
+        "file": "pages/claim-3-nonlinear-operators/page.md",
+        "children": []
+      },
+      {
+        "slug": "methods",
+        "title": "Methods",
+        "file": "pages/methods/page.md",
+        "children": []
+      },
+      {
+        "slug": "negative-controls",
+        "title": "Negative controls",
+        "file": "pages/negative-controls/page.md",
+        "children": []
+      },
+      {
+        "slug": "conclusion",
+        "title": "Conclusion",
+        "file": "pages/conclusion/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-exact-recovery",
+        "title": "Claim \u2014 Prop 4.1 exact recovery",
+        "file": "pages/claim-exact-recovery/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-2-full-neural-grid",
+        "title": "Claim 2 \u2014 Full neural HyperGrid",
+        "file": "pages/claim-2-full-neural-grid/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-3-qm9-gap-sa",
+        "title": "Claim 3 \u2014 QM9 GAP-SA",
+        "file": "pages/claim-3-qm9-gap-sa/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-4-logical-speed-accuracy",
+        "title": "Claim 4 \u2014 Logical speed and accuracy",
+        "file": "pages/claim-4-logical-speed-accuracy/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-5-reaching-ablation",
+        "title": "Claim 5 \u2014 Reaching-weight ablation",
+        "file": "pages/claim-5-reaching-ablation/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-6-distortion",
+        "title": "Claim 6 \u2014 High-G distortion",
+        "file": "pages/claim-6-distortion/page.md",
+        "children": []
+      },
+      {
+        "slug": "cumulative-release-gate",
+        "title": "Cumulative release gate",
+        "file": "pages/cumulative-release-gate/page.md",
+        "children": []
+      }
+    ]
+  },
+  "agent_view_tokens": 1209,
+  "revision": "1784620833475934850"
+}

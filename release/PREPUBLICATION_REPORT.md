@@ -1,6 +1,6 @@
 # Pre-publication release report
 
-**Prepared:** 2026-07-24 · **Target Space:** `DineshAI/qbe18sZPWS` · **Status:** awaiting explicit publication approval
+**Prepared:** 2026-07-24 · **Target Space:** `DineshAI/qbe18sZPWS` · **Status:** published with explicit approval; awaiting live judge
 
 ## Immutable starting state
 
@@ -213,11 +213,14 @@ orx exp cancel 69f08fe8-577f-4941-ba0d-94cdcf93809c
 
 Read-only inspection commands (`orx exp status`, `orx runs`, `orx logs`,
 `git diff`, `git status`, `find`, `rg`, `sed`, `jq`, `shasum`, and image
-inspection) were used throughout. No unmanaged `pip`, conda, GPU command,
-second Space creation, or Hugging Face upload command was executed.
+inspection) were used throughout. No unmanaged `pip`, conda, GPU command, or
+second Space creation was executed.
 
-## Approval gate
+## Publication outcome
 
-All claim/evidence, report, manifest, and text-only candidate checks are ready.
-The existing Hugging Face Space is still at the judged head. Publication is
-stopped here pending one explicit user approval.
+The user approved publication. The exact 81-path text allowlist was committed
+additively to the existing Space at
+`1546ac7f0d7c98d2077e97db46b3c9b62809ecc4`. Post-publication verification
+matched all 81 SHA-256 entries, and all 20 files from the judged revision
+remain present. The reproduction is awaiting a live judge pass; the recorded
+score remains `4/12` until that verdict exists.
