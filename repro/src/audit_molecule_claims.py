@@ -51,7 +51,8 @@ EXPECTED_IMPORTS = [
     "gfn",
     "torch_geometric",
     "rdkit",
-    "h5py",
+    "pandas",
+    "tables",
     "botorch",
     "gfn_composition.tasks.qm9",
     "gfn_composition.tasks.qm9_moo",
@@ -156,13 +157,16 @@ def import_inventory() -> dict:
 def data_inventory() -> dict:
     scorer = MOLS / "data" / "mxmnet_gap_model.pt"
     qm9 = MOLS / "data" / "qm9.h5"
-    hdf5 = {"opened": False, "keys": [], "error": None}
+    hdf5 = {"opened": False, "keys": [], "shape": None, "columns": [], "error": None}
     try:
-        import h5py
+        import pandas as pd
 
-        with h5py.File(qm9, "r") as handle:
+        with pd.HDFStore(qm9, "r") as handle:
             hdf5["opened"] = True
             hdf5["keys"] = sorted(handle.keys())
+            frame = handle["df"]
+            hdf5["shape"] = list(frame.shape)
+            hdf5["columns"] = list(frame.columns)
     except Exception as exc:
         hdf5["error"] = f"{type(exc).__name__}: {exc}"[:1000]
     return {
@@ -224,7 +228,15 @@ def build_report() -> dict:
         "python": sys.version,
         "packages": {
             name: version(name)
-            for name in ("gflownet", "torch", "torch-geometric", "rdkit", "h5py", "botorch")
+            for name in (
+                "gflownet",
+                "torch",
+                "torch-geometric",
+                "rdkit",
+                "pandas",
+                "tables",
+                "botorch",
+            )
         },
         "upstream_gflownet": {
             "documented_tag": "v0.2.0",
