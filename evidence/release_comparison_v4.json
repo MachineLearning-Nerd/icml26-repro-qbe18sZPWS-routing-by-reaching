@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-08-02T18:38:49Z",
+  "space_id": "DineshAI/qbe18sZPWS",
+  "baseline_hf_sha": "d34f1d6efa1b9c92cd9934c8a4a96218ea1c70a9",
+  "baseline_live_score": {
+    "points": 5,
+    "maximum": 12
+  },
+  "baseline_file_count": 126,
+  "candidate_release_paths": [
+    "pages/executive-summary/page.md",
+    "pages/claim-6-high-density-distortion/page.md",
+    "pages/conclusion/page.md",
+    "evidence/BLIND_REVIEW_V4.md",
+    "evidence/blind_review_v4.json",
+    "evidence/claim-6/direct_state_samples.csv",
+    "evidence/release_comparison_v4.json",
+    "repro/src/summarize_claim_6_direct_values.py"
+  ],
+  "claims": [
+    {
+      "claim": 1,
+      "live_points": 2,
+      "candidate_change": "none",
+      "regression_check": "canonical claim page and evidence remain byte-identical"
+    },
+    {
+      "claim": 2,
+      "live_points": 1,
+      "candidate_change": "none",
+      "regression_check": "full-scale claim page, raw archive, checker, and rounding caveat remain byte-identical"
+    },
+    {
+      "claim": 3,
+      "live_points": 0,
+      "candidate_change": "none",
+      "regression_check": "essential-material blocker remains unchanged"
+    },
+    {
+      "claim": 4,
+      "live_points": 0,
+      "candidate_change": "none",
+      "regression_check": "essential-material and threshold blockers remain unchanged"
+    },
+    {
+      "claim": 5,
+      "live_points": 2,
+      "candidate_change": "none",
+      "regression_check": "canonical claim page and paired-ablation evidence remain byte-identical"
+    },
+    {
+      "claim": 6,
+      "live_points": 0,
+      "candidate_change": "additive clarity only",
+      "regression_check": "unchanged 6,144-state archive is exposed through a deterministic compact CSV and direct-value tables; locked comparisons, negative control, and five appendix reversals are retained"
+    }
+  ],
+  "navigation": {
+    "logbook_json_changed": false,
+    "canonical_nodes": 9,
+    "all_baseline_paths_retained": true,
+    "historical_routes_retained": true
+  },
+  "gates": {
+    "exact_current_validator": "PASS",
+    "blind_review_total": "8/12",
+    "perfect_blind_review": false,
+    "blocked_claims": [3, 4],
+    "all_awarded_claims_preserved": true,
+    "candidate_is_additive_or_strengthening": true
+  }
+}

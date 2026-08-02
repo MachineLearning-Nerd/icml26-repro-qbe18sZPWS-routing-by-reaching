@@ -1,0 +1,40 @@
+{
+  "reviewed_at": "2026-08-02T18:38:49Z",
+  "packet_content_manifest_sha256": "9eae4cead3445f7534e57429754b725e6e9900b2dbf47b3f5b4f0c0815c4971b",
+  "packet_file_count": 108,
+  "direct_state_sha256": "dfe60d7381035df45239aab16d266ae87e2a82625fc2163fac54f43df57c28ef",
+  "direct_state_samples_sha256": "0ac6765e78a7ceb52d57bdbeebeeea40007702f24825218014751799a358c9c4",
+  "structural_checks": {
+    "nine_canonical_nodes": true,
+    "all_referenced_pages_exist": true,
+    "prior_reviews_excluded": true,
+    "outcome_label_scan_clean": true,
+    "direct_samples_reproduce_byte_for_byte": true
+  },
+  "claim_scores": {
+    "1": 2,
+    "2": 2,
+    "3": 0,
+    "4": 0,
+    "5": 2,
+    "6": 2
+  },
+  "total": 8,
+  "maximum": 12,
+  "perfect_blind_review": false,
+  "blocked_claims": {
+    "3": "Required QM9 ingredient and trained comparator checkpoints are absent.",
+    "4": "Classifier-guidance implementation/checkpoint/timing path is absent and released thresholds differ from arXiv v1."
+  },
+  "normal_checkers_passed": {
+    "claim_2": true,
+    "claim_5": true,
+    "claim_6_direct": true
+  },
+  "negative_controls_rejected": {
+    "claim_2_paper_point_mutation": true,
+    "claim_5_removed_ablation_gap": true,
+    "claim_6_shuffled_n_m": true
+  },
+  "live_leaderboard_score": null
+}
