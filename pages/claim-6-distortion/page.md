@@ -1,30 +1,33 @@
-# Claim 6 — High-G distortion
+# Claim 6 — Direct high-density distortion (legacy route mirror)
 
-## Verdict: VERIFIED on the primary Figure 3 scope
+**Claim.** For nonlinear operators, `δ(x)=u_M(x)/N_M(x)` remains approximately
+constant in high-density/high-composition-value regions where sampling accuracy
+matters most.
 
-The paper states that nonlinear distortion
-`δ(x)=u_M(x)/N_M(x)` remains approximately constant where the composition
-value `G` is high and sampling accuracy matters.
+**Result: verified at the source-primary scope.** For harmonic mean and
+contrast over three neural seeds, the audit records `G`, `u_M`, `N_M`, `δ`, and
+induced probability for all 1,024 terminals per row: 6,144 state records.
+The high region is fixed before examining `δ` as the 102 largest-`G` states;
+the comparator is the 512 smallest-`G` states.
 
-The primary Figure 3 contract covers `pCircle1 ⊗ pCircle2` and
-`pCircle1 contrast pCircle2`. Across both operators and three seeds, all six
-rows have lower median relative deviation in the high-G decile than in the
-bottom half, and all high-G deviations are at most `0.30`.
+| Seed | Operator | `1/Z_M` | Mean `δ`, high | Mean `δ`, bottom | Normalized variance, high / bottom |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 604 | harmonic mean | 3.983598 | 3.741365 | 4.430434 | 0.0594 / 0.7432 |
+| 604 | contrast | 1.300653 | 1.539196 | 0.681038 | 0.0465 / 0.3576 |
+| 1337 | harmonic mean | 4.051886 | 3.787581 | 5.768836 | 0.1110 / 0.9352 |
+| 1337 | contrast | 1.324546 | 1.495886 | 0.437336 | 0.0460 / 0.2399 |
+| 20260719 | harmonic mean | 4.113329 | 3.718144 | 7.725027 | 0.0399 / 1.2985 |
+| 20260719 | contrast | 1.393136 | 1.421947 | 0.576183 | 0.0058 / 0.2003 |
 
-The broader Figure A6 stress audit covers 12 settings × 3 seeds. It agrees in
-31/36 rows and has negative Spearman association in 30/36 rows; five rows
-reverse the high-versus-low ordering. The verdict is therefore not generalized
-beyond the primary source scope.
+Every row also has lower high-region median absolute deviation and RMSE, and
+its high-region L1-error share is below its target-mass share. The independently
+recomputed `δ=u_M/N_M` residual is at most `5.27e-6`; Equation 9's pointwise
+residual is at most `2.67e-9`. A deterministic denominator shuffle fails these
+identities and the regional tests.
 
-The `0.30` operational tolerance and primary scope were fixed by the cumulative
-checker after source and parent-result inspection, not by a blinded
-preregistration. This limitation is explicit.
-
-## Fail-closed evidence
-
-- [Claim contract](../../evidence/claim-6/claim_contract.json)
-- [Independent checker and all 36 summaries](../../evidence/claim-6/independent_checker.json)
-- [Rejected high/low swap](../../evidence/claim-6/negative_control.json)
-- [Evaluation](../../evidence/claim-6/EVAL.md)
-- [Full raw neural output](../../evidence/full_grid_raw.json)
-
+Evidence: [`direct_state_audit.json`](../../evidence/claim-6/direct_state_audit.json),
+[`direct_state_samples.csv`](../../evidence/claim-6/direct_state_samples.csv),
+[`direct_state_check.json`](../../evidence/claim-6/direct_state_check.json), and
+the rejected [`direct_state_negative_control.json`](../../evidence/claim-6/direct_state_negative_control.json).
+The 36-row appendix stress audit reverses in five rows, so no broader scope is
+claimed. See [Claim 6 — High-density distortion](#/claim-6-high-density-distortion).

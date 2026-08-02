@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-08-02T21:10:20Z",
+  "space_id": "DineshAI/qbe18sZPWS",
+  "baseline_hf_sha": "8de344e3c4a45398170457c954d2b70dd62dab7c",
+  "baseline_live_score": {
+    "points": 4,
+    "maximum": 12
+  },
+  "baseline_file_count": 131,
+  "candidate_release_paths": [
+    "logbook.js",
+    "pages/executive-summary/page.md",
+    "pages/claim-2-exact-scalarization/page.md",
+    "pages/claim-3-nonlinear-operators/page.md",
+    "pages/conclusion/page.md",
+    "pages/methods/page.md",
+    "pages/negative-controls/page.md",
+    "pages/claim-6-distortion/page.md",
+    "pages/cumulative-release-gate/page.md",
+    "evidence/BLIND_REVIEW_V5.md",
+    "evidence/blind_review_v5.json",
+    "evidence/release_comparison_v5.json"
+  ],
+  "claims": [
+    {
+      "claim": 1,
+      "live_points": 2,
+      "candidate_change": "none",
+      "regression_check": "canonical Claim 1 page, source, raw output, and three controls are outside the release allowlist and remain unchanged; the exact-tabular audit remains explicitly scoped to Claim 1"
+    },
+    {
+      "claim": 2,
+      "live_points": 1,
+      "candidate_change": "retained-route consistency",
+      "regression_check": "the canonical 48-model page, raw archive, independent checker, and rounding caveat remain unchanged; the misleading retained exact-tabular route now mirrors the source-scale neural evidence"
+    },
+    {
+      "claim": 3,
+      "live_points": 0,
+      "candidate_change": "retained-route consistency",
+      "regression_check": "the canonical essential-material blocker remains unchanged; the historical nonlinear-grid route now mirrors the literal QM9 contract and does not present a proxy"
+    },
+    {
+      "claim": 4,
+      "live_points": 0,
+      "candidate_change": "none",
+      "regression_check": "the canonical missing-comparator/timing and threshold blockers remain unchanged"
+    },
+    {
+      "claim": 5,
+      "live_points": 1,
+      "candidate_change": "retained-route consistency",
+      "regression_check": "the canonical three-seed paired neural ablation and mutation remain unchanged; legacy methods and control pages now state that exact-tabular Claim 1 values are not Claim 5 evidence"
+    },
+    {
+      "claim": 6,
+      "live_points": 0,
+      "candidate_change": "retained-route consistency",
+      "regression_check": "the canonical 6,144-state archive, direct values, locked comparisons, negative control, and five appendix reversals remain unchanged; the retained short route now exposes the same direct audit"
+    }
+  ],
+  "navigation": {
+    "logbook_json_changed": false,
+    "canonical_nodes": 9,
+    "canonical_order_changed": false,
+    "all_baseline_paths_retained": true,
+    "legacy_routes_retained": true,
+    "legacy_numbered_routes_match_official_claim_number": true
+  },
+  "gates": {
+    "exact_current_validator": "PASS",
+    "blind_review_total": "8/12",
+    "perfect_blind_review": false,
+    "blocked_claims": [3, 4],
+    "all_awarded_claims_preserved": true,
+    "candidate_is_additive_or_strengthening": true
+  }
+}

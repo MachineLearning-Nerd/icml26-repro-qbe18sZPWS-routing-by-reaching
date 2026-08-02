@@ -1,0 +1,42 @@
+{
+  "reviewed_at": "2026-08-02T21:05:34Z",
+  "packet_file_count": 120,
+  "packet_manifest_sha256": "6e5af80e28d0be084d32b566d6311851030bd30deb1ba611e6291340360051e4",
+  "packet_tree_sha256": "5e434bfa78d0d10fb1a75a29ecaa20118d4007832715cc0fe9ea63fb3469c951",
+  "structural_checks": {
+    "nine_canonical_nodes": true,
+    "eight_ordered_sidebar_pages": true,
+    "all_retained_routes_included": true,
+    "legacy_numbered_routes_match_official_claim_number": true,
+    "claim_2_legacy_alias_targets_claim_2": true,
+    "claim_3_legacy_alias_targets_claim_3": true,
+    "outcome_label_scan_clean": true,
+    "current_validator_passed_on_clean_stage": true
+  },
+  "claim_scores": {
+    "1": 2,
+    "2": 2,
+    "3": 0,
+    "4": 0,
+    "5": 2,
+    "6": 2
+  },
+  "total": 8,
+  "maximum": 12,
+  "perfect_blind_review": false,
+  "blocked_claims": {
+    "3": "Required trained QM9 ingredient and comparator checkpoints are absent.",
+    "4": "Classifier-guidance implementation, checkpoint, and timing path are absent; released thresholds differ from arXiv v1."
+  },
+  "normal_checkers_passed": {
+    "claim_2": true,
+    "claim_5": true,
+    "claim_6_direct": true
+  },
+  "negative_controls_rejected": {
+    "claim_2_paper_point_mutation": true,
+    "claim_5_removed_ablation_gap": true,
+    "claim_6_shuffled_n_m": true
+  },
+  "live_leaderboard_score": null
+}
