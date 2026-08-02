@@ -107,7 +107,7 @@ def verify(root: Path) -> dict:
                 "primary_high_g_closer_than_low_g_every_seed_and_operator"
             ]
             and claim_checkers["6"]["checks"][
-                "primary_high_g_median_relative_deviation_at_most_0_30"
+                "primary_high_g_error_share_below_target_mass_every_seed_and_operator"
             ]
         ),
         "full_grid_raw_copies_content_addressed": all(

@@ -25,7 +25,7 @@ EXPECTED_SHA256 = (
 )
 PAPER_OURS = 0.003
 T_CRITICAL_DF2_95 = 4.302652729911275
-PRIMARY_FIGURE_3 = {"harmonic_mean_circle12", "contrast_circle12"}
+PRIMARY_FIGURE_5 = {"harmonic_mean_circle12", "contrast_circle12"}
 
 
 def sha256(path: Path) -> str:
@@ -189,7 +189,7 @@ def claim_5_checks(raw: dict, recomputed: dict) -> tuple[dict, dict]:
 
 def claim_6_checks(raw: dict) -> tuple[dict, dict]:
     rows = raw["distortion"]
-    primary = [row for row in rows if row["custom_dist"] in PRIMARY_FIGURE_3]
+    primary = [row for row in rows if row["custom_dist"] in PRIMARY_FIGURE_5]
     high_better = [
         row["high_g_median_relative_deviation"]
         < row["low_g_median_relative_deviation"]
@@ -219,9 +219,9 @@ def claim_6_checks(raw: dict) -> tuple[dict, dict]:
             and row["delta_identity_max_abs_residual"] < 1e-4
             for row in rows
         ),
-        "six_exact_primary_figure_3_rows": (
+        "six_exact_primary_figure_5_rows": (
             len(primary) == 6
-            and {row["custom_dist"] for row in primary} == PRIMARY_FIGURE_3
+            and {row["custom_dist"] for row in primary} == PRIMARY_FIGURE_5
             and sorted({row["seed"] for row in primary}) == SEEDS
         ),
         "primary_high_g_closer_than_low_g_every_seed_and_operator": all(
@@ -229,8 +229,8 @@ def claim_6_checks(raw: dict) -> tuple[dict, dict]:
             < row["low_g_median_relative_deviation"]
             for row in primary
         ),
-        "primary_high_g_median_relative_deviation_at_most_0_30": all(
-            row["high_g_median_relative_deviation"] <= 0.30 for row in primary
+        "primary_high_g_error_share_below_target_mass_every_seed_and_operator": all(
+            row["high_g_l1_share"] < row["high_g_target_mass"] for row in primary
         ),
     }
     metrics = {
@@ -244,6 +244,9 @@ def claim_6_checks(raw: dict) -> tuple[dict, dict]:
                     "low_g_median_relative_deviation",
                     "high_g_target_mass",
                     "high_g_l1_share",
+                    "outlier_count",
+                    "outlier_target_mass",
+                    "outliers_in_low_half_fraction",
                     "spearman_g_vs_relative_deviation",
                 )
             }
@@ -260,9 +263,9 @@ def claim_6_checks(raw: dict) -> tuple[dict, dict]:
                 row["low_g_median_relative_deviation"] for row in rows
             ),
             "limitation": (
-                "Five of 36 broader Figure A6 seed/operator audits reverse the "
+                "Five of 36 broader appendix seed/operator audits reverse the "
                 "high-vs-low ordering; the VERIFIED verdict is scoped to the "
-                "paper's primary Figure 3 compositions."
+                "paper's primary Figure 5 compositions."
             ),
         },
     }
@@ -282,7 +285,7 @@ def apply_negative_control(raw: dict, claim: int) -> None:
                 )
     elif claim == 6:
         for row in raw["distortion"]:
-            if row["custom_dist"] in PRIMARY_FIGURE_3:
+            if row["custom_dist"] in PRIMARY_FIGURE_5:
                 (
                     row["high_g_median_relative_deviation"],
                     row["low_g_median_relative_deviation"],

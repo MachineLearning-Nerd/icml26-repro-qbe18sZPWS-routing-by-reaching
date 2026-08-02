@@ -215,10 +215,9 @@ def distortion_primary(raw: dict, output: Path) -> None:
         xticks=x,
         xticklabels=labels,
         ylabel="Median relative deviation from 1/Zₘ ↓",
-        title="Primary Figure 3 compositions: distortion is smaller where G is high",
+        title="Primary Figure 5 compositions: distortion is smaller where G is high",
     )
-    ax.axhline(0.30, color="#475569", linestyle=":", linewidth=1.3, label="0.30 gate")
-    ax.legend(ncol=3, loc="upper left")
+    ax.legend(ncol=2, loc="upper left")
     save(fig, output, "distortion-primary.png")
 
 
@@ -235,7 +234,7 @@ def distortion_stress(raw: dict, output: Path) -> None:
         color="#94A3B8",
         s=55,
         alpha=0.8,
-        label="Figure A6 stress settings",
+        label="Appendix stress settings",
     )
     ax.scatter(
         low[primary],
@@ -244,7 +243,7 @@ def distortion_stress(raw: dict, output: Path) -> None:
         edgecolors="white",
         linewidths=0.8,
         s=92,
-        label="Primary Figure 3 settings",
+        label="Primary Figure 5 settings",
         zorder=3,
     )
     limit = max(float(low.max()), float(high.max())) * 1.04

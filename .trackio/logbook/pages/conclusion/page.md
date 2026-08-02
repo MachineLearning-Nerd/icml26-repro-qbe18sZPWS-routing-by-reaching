@@ -1,35 +1,27 @@
 # Conclusion
 
+---
+<!-- trackio-cell
+{"type": "markdown", "id": "cell_rbr_conclusion_20260802", "created_at": "2026-08-02T11:49:48+00:00", "title": "Overall findings"}
+-->
+This full-scale CPU audit verifies Proposition 4.1 (Claim 1), the reaching-probability ablation (Claim 5), and the source-primary high-density distortion behavior (Claim 6). It falsifies Claim 2's exact printed `0.003` result while reproducing the method's qualitative advantage over both trained baselines in all 12 paired cells. Claims 3 and 4 remain `BLOCKED — essential material unavailable`: the public release lacks the required molecule ingredient/comparator checkpoints and classifier-guidance timing path, and its target-bin thresholds differ from arXiv v1. A blocked campaign is not called perfect.
+
+All accepted evidence uses local CPU, fixed seeds, exact source pins, explicit controls, and deterministic checkers. The accepted neural record took 10 h 36 min; rerunning the cumulative release gate takes about 90 seconds with `uv sync --frozen && uv run python repro/src/run_campaign.py`. [Paper](https://arxiv.org/pdf/2602.21565v1) · [author source pin](https://github.com/ml-postech/gflownet-composition/tree/b82493c8cd9b46a0933ab8f19440aebbf3e14b28) · [reproduction repository](https://github.com/MachineLearning-Nerd/icml26-repro-qbe18sZPWS-routing-by-reaching) · [Hugging Face Space](https://huggingface.co/spaces/DineshAI/qbe18sZPWS).
 
 ---
 <!-- trackio-cell
-{"type": "markdown", "id": "cell_f0e0b09c425c", "created_at": "2026-07-17T04:04:11+00:00", "title": "Executive summary", "pinned": true, "pinned_at": "2026-07-17T04:04:11+00:00"}
+{"type": "code", "id": "cell_rbr_release_gate", "created_at": "2026-08-02T11:49:48+00:00", "title": "Fail-closed cumulative gate", "command": ["uv", "run", "python", "repro/src/run_campaign.py"], "exit_code": 0, "duration_s": 88.11}
 -->
-All three claims are verified at full synthetic scale.
+````text title=cumulative_gate.txt
+all six official claims present: PASS
+exact cumulative verdicts retained: PASS
+Claim 1 exact audit and three controls: PASS
+Claim 2 source-scale archive, exact-point test, and mutation: PASS
+Claims 3/4 prerequisite blockers and mutation: PASS
+Claim 5 paired ablation and mutation: PASS
+Claim 6 source-primary scope, broader stress audit, and mutation: PASS
+full-grid raw copies content-addressed: PASS
+cumulative verifier: PASS
+````
 
-## Scope & cost
-
-| | This reproduction | Full replication |
-|---|---|---|
-| Scope | Complete 32×32 state space; 8 exact ingredients; 524 mixtures | Paper also trains neural GFNs and evaluates molecules |
-| Hardware | 4-core CPU | Training experiments use GPU |
-| Time | Under 6 seconds per complete evidence run | Neural and molecular training is substantially longer |
-| Cost | $0 | GPU compute required |
-| Outcome | Composition theorem isolated and verified; nonlinear distortion quantified | Includes ingredient learning and downstream molecular quality |
-
-
----
-<!-- trackio-cell
-{"type": "markdown", "id": "cell_e1318883d669", "created_at": "2026-07-19T15:12:43+00:00", "title": "2026-07-19: composition suite rerun on PRE-TRAINED neural GFlowNets"}
--->
-The full Routing-by-Reaching suite now runs on 8 pre-trained neural
-GFlowNets (trajectory balance, cached state dicts in the repo), closing the
-single gap all three prior verdicts named. Results: 524 training-free
-adaptations in 0.06s with zero gradient updates (C1); exact linear-
-scalarization recovery at max L1 4.8e-16 across 128 settings with a failing
-no-reaching ablation (C2); harmonic/contrast operators composed without
-retraining, 9/12 enrichment (contrast 6/6), Monte-Carlo sampler check within
-the analytic noise floor (C3). Ingredient fidelity is disclosed verbatim
-(L1 0.015-0.17; learned log Z within 0.06 of exact everywhere); the ring
-rewards' training difficulty after three logged attempts is reported as a
-limitation of TB training, not of the composition method. 24/24 tests pass.
+The gate preserves negative outcomes: it cannot convert either molecule blocker into a success, cannot erase Claim 2's rounding limitation, and cannot extend Claim 6 beyond the source-primary scope. The frozen [outcome-blind review](https://github.com/MachineLearning-Nerd/icml26-repro-qbe18sZPWS-routing-by-reaching/blob/main/evidence/BLIND_REVIEW_V2.md) scores the candidate evidence `8/12`—not a live leaderboard score—and records why Claims 3 and 4 prevent a perfect review.

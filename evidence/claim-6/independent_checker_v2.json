@@ -1,0 +1,109 @@
+{
+  "checks": {
+    "128_preferences_every_cell": true,
+    "36_appendix_stress_audits": true,
+    "all_12_operators_each_seed": true,
+    "all_48_models_recorded": true,
+    "all_l1_in_valid_range": true,
+    "immutable_parent_raw_sha256": true,
+    "mass_state_and_identity_sanity": true,
+    "paper_scale_32x32": true,
+    "paper_training_20000_steps": true,
+    "paper_v1_contract": true,
+    "primary_high_g_closer_than_low_g_every_seed_and_operator": true,
+    "primary_high_g_error_share_below_target_mass_every_seed_and_operator": true,
+    "recorded_aggregates_recompute": true,
+    "six_exact_primary_figure_5_rows": true,
+    "three_exact_seeds": true
+  },
+  "claim": 6,
+  "expected_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "input_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "metrics": {
+    "appendix_stress": {
+      "high_g_closer_count": 31,
+      "limitation": "Five of 36 broader appendix seed/operator audits reverse the high-vs-low ordering; the VERIFIED verdict is scoped to the paper's primary Figure 5 compositions.",
+      "median_high_g_relative_deviation": 0.10693172390772054,
+      "median_low_g_relative_deviation": 0.3691157702609833,
+      "negative_spearman_count": 30,
+      "total": 36
+    },
+    "primary_rows": [
+      {
+        "custom_dist": "harmonic_mean_circle12",
+        "high_g_l1_share": 0.5906008733633434,
+        "high_g_median_relative_deviation": 0.18600379548901408,
+        "high_g_target_mass": 0.7578452888114772,
+        "low_g_median_relative_deviation": 0.459849559432512,
+        "outlier_count": 60,
+        "outlier_target_mass": 0.005161711843432758,
+        "outliers_in_low_half_fraction": 0.45,
+        "seed": 604,
+        "spearman_g_vs_relative_deviation": -0.045250138580931264
+      },
+      {
+        "custom_dist": "contrast_circle12",
+        "high_g_l1_share": 0.39278074665442775,
+        "high_g_median_relative_deviation": 0.25112656558726754,
+        "high_g_target_mass": 0.49440350536792754,
+        "low_g_median_relative_deviation": 0.8506415270545109,
+        "outlier_count": 0,
+        "outlier_target_mass": 0.0,
+        "outliers_in_low_half_fraction": 0.0,
+        "seed": 604,
+        "spearman_g_vs_relative_deviation": -0.4750873842178671
+      },
+      {
+        "custom_dist": "harmonic_mean_circle12",
+        "high_g_l1_share": 0.7099236591973603,
+        "high_g_median_relative_deviation": 0.1859837651724837,
+        "high_g_target_mass": 0.7589364834403022,
+        "low_g_median_relative_deviation": 0.38330316251887875,
+        "outlier_count": 81,
+        "outlier_target_mass": 0.006621853099621271,
+        "outliers_in_low_half_fraction": 0.5555555555555556,
+        "seed": 1337,
+        "spearman_g_vs_relative_deviation": -0.0916302593698591
+      },
+      {
+        "custom_dist": "contrast_circle12",
+        "high_g_l1_share": 0.3805973418701184,
+        "high_g_median_relative_deviation": 0.2367322730639329,
+        "high_g_target_mass": 0.4945484790708058,
+        "low_g_median_relative_deviation": 0.9403964955010793,
+        "outlier_count": 0,
+        "outlier_target_mass": 0.0,
+        "outliers_in_low_half_fraction": 0.0,
+        "seed": 1337,
+        "spearman_g_vs_relative_deviation": -0.565618965023961
+      },
+      {
+        "custom_dist": "harmonic_mean_circle12",
+        "high_g_l1_share": 0.5841273132580382,
+        "high_g_median_relative_deviation": 0.20636445465551684,
+        "high_g_target_mass": 0.7565672179644332,
+        "low_g_median_relative_deviation": 0.4271440400260127,
+        "outlier_count": 73,
+        "outlier_target_mass": 0.005562721999958424,
+        "outliers_in_low_half_fraction": 0.7397260273972602,
+        "seed": 20260719,
+        "spearman_g_vs_relative_deviation": -0.16638722864959585
+      },
+      {
+        "custom_dist": "contrast_circle12",
+        "high_g_l1_share": 0.21983619857017356,
+        "high_g_median_relative_deviation": 0.02242248486830022,
+        "high_g_target_mass": 0.49638630125442756,
+        "low_g_median_relative_deviation": 0.7997774447615891,
+        "outlier_count": 0,
+        "outlier_target_mass": 0.0,
+        "outliers_in_low_half_fraction": 0.0,
+        "seed": 20260719,
+        "spearman_g_vs_relative_deviation": -0.4914469302088548
+      }
+    ]
+  },
+  "negative_control": false,
+  "passed": true,
+  "verdict": "VERIFIED"
+}

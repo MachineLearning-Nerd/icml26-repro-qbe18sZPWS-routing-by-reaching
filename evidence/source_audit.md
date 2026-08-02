@@ -40,11 +40,11 @@ context.
   `27.02 ms` (3) for ours versus `1789.11 ms` and `1974.64 ms` for
   classifier guidance, with Table 4 reporting higher target-bin percentages
   for ours in every listed fragment and QM9 composition.
-- Claim 6: v1 Section 5.3 and Figure 3 (extended in Figure A6). The
+- Claim 6: v1 Section 5.3 and Figure 5 (extended in appendix panels). The
   distortion is `δ(x)=u_M(x)/N_M(x)`. The paper says it is not exactly
   constant for nonlinear operators but stays close to `1/Z_M` where the
   composition value `G(·)` is large; deviations should concentrate where
-  `G(·)` is small. Figure 3 defines outliers using
+  `G(·)` is small. Figure 5 defines outliers using
   `[Q1−1.5·IQR, Q3+1.5·IQR]`.
 
 ## Existing accepted evidence

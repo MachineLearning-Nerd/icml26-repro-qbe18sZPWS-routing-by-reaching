@@ -1,0 +1,11 @@
+{
+  "allowed_verdicts": [
+    "VERIFIED",
+    "FALSIFIED",
+    "BLOCKED"
+  ],
+  "claim": 6,
+  "machine_checkable_contract": "For the two primary Figure 5 nonlinear compositions (pCircle1 harmonic-mean pCircle2 and pCircle1 contrast pCircle2), directly compute delta, G, 1/Z_M, and quantile-binned relative deviation for three seeds. Require the high-G decile deviation to be below the bottom-half deviation and its L1-error share to be below its target-mass share in all six rows. Audit all 12 appendix settings as a broader, reported stress test without silently strengthening the primary claim.",
+  "paper_result": "For nonlinear operators delta(x) stays near 1/Z_M in high-composition-value regions; deviations occur mainly at low G.",
+  "source_anchor": "arXiv v1, Section 5.3, Figure 5 and appendix panels"
+}

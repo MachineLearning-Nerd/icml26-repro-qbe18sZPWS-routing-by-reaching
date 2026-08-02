@@ -1,50 +1,59 @@
 {
   "schema_version": 1,
-  "title": "Repro - Routing by Reaching",
+  "title": "Reproduction: Routing by Reaching: Composition of Pre-trained GFlowNets for Multi-Objective Generation",
   "emoji": "🎯",
   "space_id": "DineshAI/qbe18sZPWS",
-  "paper": {
-    "arxiv_id": "2602.21565",
-    "openreview_id": "qbe18sZPWS"
-  },
+  "paper": "arXiv:2602.21565",
   "tags": [
     "icml2026-repro",
     "paper-qbe18sZPWS"
   ],
-  "updated_at": "2026-07-19T15:12:43+00:00",
+  "updated_at": "2026-08-02T11:49:48+00:00",
   "root": {
     "slug": "index",
-    "title": "Repro - Routing by Reaching",
+    "title": "Reproduction: Routing by Reaching: Composition of Pre-trained GFlowNets for Multi-Objective Generation",
     "file": "pages/index.md",
     "children": [
       {
-        "slug": "claim-1-training-free-composition",
-        "title": "Claim 1 - Training-free composition",
-        "file": "pages/claim-1-training-free-composition/page.md",
+        "slug": "executive-summary",
+        "title": "Executive summary",
+        "file": "pages/executive-summary/page.md",
         "children": []
       },
       {
-        "slug": "claim-2-exact-scalarization",
-        "title": "Claim 2 - Exact scalarization",
-        "file": "pages/claim-2-exact-scalarization/page.md",
+        "slug": "claim-1-exact-linear-scalarization",
+        "title": "Claim 1 — Exact linear scalarization",
+        "file": "pages/claim-1-exact-linear-scalarization/page.md",
         "children": []
       },
       {
-        "slug": "claim-3-nonlinear-operators",
-        "title": "Claim 3 - Nonlinear operators",
-        "file": "pages/claim-3-nonlinear-operators/page.md",
+        "slug": "claim-2-full-neural-hypergrid",
+        "title": "Claim 2 — Full neural hypergrid",
+        "file": "pages/claim-2-full-neural-hypergrid/page.md",
         "children": []
       },
       {
-        "slug": "methods",
-        "title": "Methods",
-        "file": "pages/methods/page.md",
+        "slug": "claim-3-qm9-gap-sa",
+        "title": "Claim 3 — QM9 GAP-SA",
+        "file": "pages/claim-3-qm9-gap-sa/page.md",
         "children": []
       },
       {
-        "slug": "negative-controls",
-        "title": "Negative controls",
-        "file": "pages/negative-controls/page.md",
+        "slug": "claim-4-logical-speed-and-accuracy",
+        "title": "Claim 4 — Logical speed and accuracy",
+        "file": "pages/claim-4-logical-speed-and-accuracy/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-5-reaching-probability-ablation",
+        "title": "Claim 5 — Reaching-probability ablation",
+        "file": "pages/claim-5-reaching-probability-ablation/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-6-high-density-distortion",
+        "title": "Claim 6 — High-density distortion",
+        "file": "pages/claim-6-high-density-distortion/page.md",
         "children": []
       },
       {
@@ -55,6 +64,6 @@
       }
     ]
   },
-  "agent_view_tokens": 2676,
-  "revision": "1784473963662676000"
+  "agent_view_tokens": 7600,
+  "revision": "1785671388000000000"
 }

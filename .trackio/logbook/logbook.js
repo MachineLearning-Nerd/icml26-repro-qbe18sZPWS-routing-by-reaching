@@ -7,6 +7,19 @@
   const LIVE_RELOAD_MS = 1500;
   const FIGURE_FRAME_WINDOWS = new Set();
   let FIGURE_NAVIGATION_READY = false;
+  const LEGACY_SLUGS = {
+    "methods": "executive-summary",
+    "claim-1-training-free-composition": "claim-1-exact-linear-scalarization",
+    "claim-2-exact-scalarization": "claim-1-exact-linear-scalarization",
+    "claim-3-nonlinear-operators": "claim-6-high-density-distortion",
+    "negative-controls": "claim-1-exact-linear-scalarization",
+    "claim-exact-recovery": "claim-1-exact-linear-scalarization",
+    "claim-2-full-neural-grid": "claim-2-full-neural-hypergrid",
+    "claim-4-logical-speed-accuracy": "claim-4-logical-speed-and-accuracy",
+    "claim-5-reaching-ablation": "claim-5-reaching-probability-ablation",
+    "claim-6-distortion": "claim-6-high-density-distortion",
+    "cumulative-release-gate": "conclusion",
+  };
 
   function esc(s) {
     return String(s)
@@ -30,6 +43,10 @@
       if (hit) return hit;
     }
     return null;
+  }
+
+  function resolveSlug(slug) {
+    return LEGACY_SLUGS[slug] || slug;
   }
 
   /* -------------------- minimal markdown -------------------- */
@@ -493,7 +510,7 @@
       if (!FIGURE_FRAME_WINDOWS.has(event.source)) return;
       const message = event.data;
       if (!message || message.type !== "trackio-logbook:navigate") return;
-      const target = String(message.target || "").replace(/^#?\//, "");
+      const target = resolveSlug(String(message.target || "").replace(/^#?\//, ""));
       if (!target || !MANIFEST || !findNode(MANIFEST.root, target)) return;
       const hash = "#/" + target;
       if (location.hash === hash) scrollToHash();
@@ -2087,7 +2104,8 @@
   }
 
   function currentSlug() {
-    const slug = (location.hash || "").replace(/^#\//, "") || MANIFEST.root.slug;
+    const requested = (location.hash || "").replace(/^#\//, "") || MANIFEST.root.slug;
+    const slug = resolveSlug(requested);
     return findNode(MANIFEST.root, slug) ? slug : MANIFEST.root.slug;
   }
 
@@ -2104,7 +2122,7 @@
   }
 
   function navigateToLogbookSlug(target) {
-    const slug = String(target || "").replace(/^#?\//, "").trim();
+    const slug = resolveSlug(String(target || "").replace(/^#?\//, "").trim());
     if (!slug || !findNode(MANIFEST.root, slug)) return;
     const hash = "#/" + slug;
     if (location.hash === hash) {
