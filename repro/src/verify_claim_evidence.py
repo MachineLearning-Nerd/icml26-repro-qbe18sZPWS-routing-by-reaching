@@ -130,7 +130,8 @@ def claim_2_checks(raw: dict, recomputed: dict) -> tuple[dict, dict]:
             paper["ours"][str(k)] == PAPER_OURS for k in KS
         ),
         "paper_ours_point_below_every_95pct_ci": all(
-            recomputed["ours"][str(k)]["ci95_t"][0] > PAPER_OURS for k in KS
+            recomputed["ours"][str(k)]["ci95_t"][0] > PAPER_OURS + 1e-12
+            for k in KS
         ),
         "observed_ours_means_materially_above_point": all(
             recomputed["ours"][str(k)]["mean"] > 0.005 for k in KS
@@ -147,6 +148,36 @@ def claim_2_checks(raw: dict, recomputed: dict) -> tuple[dict, dict]:
         },
         "qualitative_ordering_verified": checks[
             "ours_beats_both_baselines_every_seed_and_k"
+        ],
+        "paired_seed_objective_cells": [
+            {
+                "seed": seed,
+                "objectives": k,
+                "ours": statistics.fmean(
+                    raw["table1"][str(seed)]["ours"][str(k)]
+                ),
+                "mogfn": statistics.fmean(
+                    raw["table1"][str(seed)]["mogfn"][str(k)]
+                ),
+                "hngfn": statistics.fmean(
+                    raw["table1"][str(seed)]["hngfn"][str(k)]
+                ),
+                "ours_beats_both": (
+                    statistics.fmean(
+                        raw["table1"][str(seed)]["ours"][str(k)]
+                    )
+                    < min(
+                        statistics.fmean(
+                            raw["table1"][str(seed)]["mogfn"][str(k)]
+                        ),
+                        statistics.fmean(
+                            raw["table1"][str(seed)]["hngfn"][str(k)]
+                        ),
+                    )
+                ),
+            }
+            for seed in SEEDS
+            for k in KS
         ],
         "rounding_limitation": (
             "The contract adjudicates the exact printed point 0.003. "
@@ -328,9 +359,14 @@ def main() -> None:
     parser.add_argument("--claim", type=int, choices=(2, 5, 6), required=True)
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--negative-control", action="store_true")
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     result = verify(args.input, args.claim, args.negative_control)
-    print(json.dumps(result, indent=2, sort_keys=True))
+    rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(rendered)
+    print(rendered, end="")
     raise SystemExit(0 if result["passed"] else 1)
 
 

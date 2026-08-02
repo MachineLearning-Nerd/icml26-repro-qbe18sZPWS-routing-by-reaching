@@ -1,0 +1,38 @@
+{
+  "packet_content_manifest_sha256": "efc60fceb6997d0ee3f40b7d74e9c977003692007c6e21fae20de266af4818e1",
+  "packet_file_count": 103,
+  "direct_state_sha256": "dfe60d7381035df45239aab16d266ae87e2a82625fc2163fac54f43df57c28ef",
+  "structural_checks": {
+    "nine_canonical_nodes": true,
+    "all_referenced_pages_exist": true,
+    "prior_reviews_excluded": true,
+    "outcome_label_scan_clean": true
+  },
+  "claim_scores": {
+    "1": 2,
+    "2": 2,
+    "3": 0,
+    "4": 0,
+    "5": 2,
+    "6": 2
+  },
+  "total": 8,
+  "maximum": 12,
+  "perfect_blind_review": false,
+  "blocked_claims": {
+    "3": "Required QM9 ingredient and trained comparator checkpoints are absent.",
+    "4": "Classifier-guidance implementation/checkpoint/timing path is absent and released thresholds differ from arXiv v1."
+  },
+  "normal_checkers_passed": {
+    "claim_2": true,
+    "claim_6_direct": true
+  },
+  "negative_controls_rejected": {
+    "claim_2_paper_point_mutation": true,
+    "claim_6_shuffled_n_m": true
+  },
+  "failed_packet_rounds": [
+    "Initial v3 packet retained the prior v2 review and was rejected before scoring."
+  ],
+  "live_leaderboard_score": null
+}

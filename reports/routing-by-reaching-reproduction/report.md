@@ -56,9 +56,9 @@ For nonlinear operators the method induces an approximation. The paper character
 \delta(x)=u_M(x)/N_M(x),
 \]
 
-and argues that this distortion is approximately constant in high-composition-value regions. We computed `δ`, `G`, `1/Z_M`, target mass, L1 contribution, decile summaries, and an independent identity residual on every grid state.
+and argues that this distortion is approximately constant in high-composition-value regions. A fresh 34-minute CPU run trained the six primary ingredient checkpoints for 20,000 steps. Every checkpoint was byte-identical to its immutable parent hash, and the audit recorded `G`, `u_M`, `N_M`, `δ`, induced probability, target mass, and L1 contribution for all 1,024 states in each operator/seed row.
 
-The source-primary Figure 5 test uses `pCircle1 ⊗ pCircle2` and `pCircle1 contrast pCircle2`. Across both operators and all three seeds, the high-G decile has lower median relative deviation than the bottom half. Its share of Eq. 9's L1 error is also below its share of target mass in all six rows, directly testing the paper's statement that high-composition regions contribute proportionally less error.
+The source-primary Figure 5 test uses `pCircle1 ⊗ pCircle2` and `pCircle1 contrast pCircle2`. Across both operators and all three seeds, high-G distortion variance is `0.0058–0.1110` versus `0.2003–1.2985` in the bottom half, and high-G distortion RMSE is `0.0787–0.3395` versus `0.7377–1.4386`. The high-G decile also has lower median relative deviation, while its share of Eq. 9's L1 error is below its target-mass share in all six rows. The maximum direct identity residual is `5.27e-6`, and the maximum Eq. 9 residual is `2.67e-9`.
 
 ![Primary Figure 5 high- and low-composition-value distortion](images/distortion-primary.png)
 
@@ -66,7 +66,7 @@ The broader appendix audit is a stress test, not part of the primary verdict. It
 
 ![Broader appendix distortion stress test](images/distortion-stress.png)
 
-The first cumulative checker used a post-hoc `0.30` tolerance and the wrong inherited figure number. The blind audit rejected that cutoff. The repaired checker uses only comparisons implied directly by Figure 5 and Eq. 9: high- versus low-composition deviation, and L1-error share versus target-mass share. The broader failures remain reported alongside the primary result.
+The first cumulative checker used a post-hoc `0.30` tolerance and the wrong inherited figure number. The blind audit rejected that cutoff. The direct stdlib checker now recomputes the identities and region statistics from state-level arrays without a magnitude threshold. Its negative control shuffles `N_M` while preserving the other arrays and fails both the mathematical identities and high-G comparisons. The broader appendix failures remain reported alongside the primary result.
 
 ## Why the molecule claims are blocked
 
@@ -90,13 +90,14 @@ The fixed entrypoint is `repro/src/run_campaign.py`. Its consequential path is:
 2. rerun the cached neural and pytest regressions;
 3. audit molecule prerequisites and reject a mutated blocker record;
 4. content-address the full neural raw output from the 10h36m parent run;
-5. independently recompute Claims 2, 5, and 6 and run a claim-specific mutation that must fail;
-6. regenerate all report figures from that raw JSON;
-7. require the cumulative campaign verifier to pass every accepted and blocked claim gate.
+5. independently recompute Claims 2 and 5 and run claim-specific mutations that must fail;
+6. verify the direct Claim 6 state arrays and reject a shuffled-`N_M` control;
+7. regenerate all report figures from the full-grid raw JSON;
+8. require the cumulative campaign verifier to pass every accepted and blocked claim gate.
 
-The full raw JSON has SHA-256 `d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec`. The cumulative command replays and verifies it rather than obscuring another expensive training pass. The immutable raw file retains the parent run’s stricter all-Figure-A6 `BLOCKED` label; the source-scoped cumulative verdict comes only from the new independent checker.
+The full-grid raw JSON has SHA-256 `d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec`. The direct Claim 6 archive has SHA-256 `dfe60d7381035df45239aab16d266ae87e2a82625fc2163fac54f43df57c28ef`. The cumulative command content-addresses both artifacts instead of obscuring another expensive training pass. The historical full-grid file retains its exploratory all-Figure-A6 `BLOCKED` label; the primary source-scoped verdict is derived only from the direct state arrays and independent checker.
 
-Every verifier exits nonzero when its evidence fails. The Claim 2 mutation replaces ours with `0.003`, the Claim 5 mutation makes the ensemble identical to ours, and the Claim 6 mutation swaps high- and low-G deviations. All three were rejected in the cumulative run. The suite passed 27 tests.
+Every verifier exits nonzero when its evidence fails. The Claim 2 mutation replaces ours with `0.003`, the Claim 5 mutation makes the ensemble identical to ours, and the direct Claim 6 control shuffles `N_M`. All three controls were rejected in the cumulative run. The suite passed 27 gates.
 
 ## Experiment lineage and compute
 

@@ -1,0 +1,162 @@
+{
+  "checks": {
+    "128_preferences_every_cell": true,
+    "all_48_models_recorded": true,
+    "all_l1_in_valid_range": true,
+    "immutable_parent_raw_sha256": true,
+    "observed_ours_means_materially_above_point": true,
+    "ours_beats_both_baselines_every_seed_and_k": true,
+    "paper_ours_point_below_every_95pct_ci": true,
+    "paper_ours_point_is_0_003_each_k": true,
+    "paper_scale_32x32": true,
+    "paper_training_20000_steps": true,
+    "paper_v1_contract": true,
+    "recorded_aggregates_recompute": true,
+    "three_exact_seeds": true,
+    "trained_baselines_within_0_02_of_paper": true
+  },
+  "claim": 2,
+  "expected_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "input_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "metrics": {
+    "observed_ours": {
+      "2": {
+        "ci95_t": [
+          0.005081107284782202,
+          0.016557566520597262
+        ],
+        "mean": 0.010819336902689733
+      },
+      "3": {
+        "ci95_t": [
+          0.004187424927791792,
+          0.011671332854761065
+        ],
+        "mean": 0.007929378891276428
+      },
+      "4": {
+        "ci95_t": [
+          0.0034025750545736014,
+          0.011085207506569016
+        ],
+        "mean": 0.007243891280571309
+      },
+      "5": {
+        "ci95_t": [
+          0.005526666972231683,
+          0.008693419176038955
+        ],
+        "mean": 0.007110043074135319
+      }
+    },
+    "paired_seed_objective_cells": [
+      {
+        "hngfn": 0.03257754456717521,
+        "mogfn": 0.0291390402126126,
+        "objectives": 2,
+        "ours": 0.011590689231525175,
+        "ours_beats_both": true,
+        "seed": 604
+      },
+      {
+        "hngfn": 0.02510487193649169,
+        "mogfn": 0.029846426710719243,
+        "objectives": 3,
+        "ours": 0.008385539054870605,
+        "ours_beats_both": true,
+        "seed": 604
+      },
+      {
+        "hngfn": 0.043085000972496346,
+        "mogfn": 0.03859007441496942,
+        "objectives": 4,
+        "ours": 0.007536117896961514,
+        "ours_beats_both": true,
+        "seed": 604
+      },
+      {
+        "hngfn": 0.044400934217264876,
+        "mogfn": 0.05207899207016453,
+        "objectives": 5,
+        "ours": 0.0066955129768757615,
+        "ours_beats_both": true,
+        "seed": 604
+      },
+      {
+        "hngfn": 0.02424028421228286,
+        "mogfn": 0.022535093667102046,
+        "objectives": 2,
+        "ours": 0.00822241160858539,
+        "ours_beats_both": true,
+        "seed": 1337
+      },
+      {
+        "hngfn": 0.019837573730910663,
+        "mogfn": 0.030461371861747466,
+        "objectives": 3,
+        "ours": 0.00624768395209685,
+        "ours_beats_both": true,
+        "seed": 1337
+      },
+      {
+        "hngfn": 0.03261827708774945,
+        "mogfn": 0.04276425858552102,
+        "objectives": 4,
+        "ours": 0.005572290010604775,
+        "ours_beats_both": true,
+        "seed": 1337
+      },
+      {
+        "hngfn": 0.04191989933315199,
+        "mogfn": 0.055190632469020784,
+        "objectives": 5,
+        "ours": 0.007843991657864535,
+        "ours_beats_both": true,
+        "seed": 1337
+      },
+      {
+        "hngfn": 0.026820169645361602,
+        "mogfn": 0.029689315531868488,
+        "objectives": 2,
+        "ours": 0.012644909867958631,
+        "ours_beats_both": true,
+        "seed": 20260719
+      },
+      {
+        "hngfn": 0.02705506763595622,
+        "mogfn": 0.03422598438919522,
+        "objectives": 3,
+        "ours": 0.00915491366686183,
+        "ours_beats_both": true,
+        "seed": 20260719
+      },
+      {
+        "hngfn": 0.041466278620646335,
+        "mogfn": 0.047420635557500646,
+        "objectives": 4,
+        "ours": 0.00862326593414764,
+        "ours_beats_both": true,
+        "seed": 20260719
+      },
+      {
+        "hngfn": 0.03724835784669267,
+        "mogfn": 0.059396729309810326,
+        "objectives": 5,
+        "ours": 0.006790624587665661,
+        "ours_beats_both": true,
+        "seed": 20260719
+      }
+    ],
+    "paper_ours": {
+      "2": 0.003,
+      "3": 0.003,
+      "4": 0.003,
+      "5": 0.003
+    },
+    "qualitative_ordering_verified": true,
+    "rounding_limitation": "The contract adjudicates the exact printed point 0.003. A three-decimal rounding interval would overlap the k=4 CI."
+  },
+  "negative_control": false,
+  "passed": true,
+  "verdict": "FALSIFIED"
+}

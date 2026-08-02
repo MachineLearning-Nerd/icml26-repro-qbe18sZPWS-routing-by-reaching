@@ -20,6 +20,10 @@ ARTIFACTS = ROOT / ".openresearch" / "artifacts"
 FIXED_COMMAND = "uv sync --frozen && uv run python repro/src/run_campaign.py"
 SEEDS = [604, 1337, 20260719]
 ARCHIVED_FULL_GRID = ROOT / "repro" / "evidence" / "full_grid_raw.json"
+DIRECT_CLAIM_6 = ROOT / "evidence" / "claim-6" / "direct_state_audit.json"
+DIRECT_CLAIM_6_SHA256 = (
+    "dfe60d7381035df45239aab16d266ae87e2a82625fc2163fac54f43df57c28ef"
+)
 ARCHIVED_FULL_GRID_SHA256 = (
     "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec"
 )
@@ -93,10 +97,11 @@ CLAIMS = {
         "contract": (
             "For the two primary Figure 5 nonlinear compositions "
             "(pCircle1 harmonic-mean pCircle2 and pCircle1 contrast pCircle2), "
-            "directly compute delta, G, 1/Z_M, and quantile-binned relative "
-            "deviation for three seeds. Require the high-G decile deviation "
-            "to be below the bottom-half deviation and its L1-error share to "
-            "be below its target-mass share in all six rows. Audit all 12 "
+            "directly compute G(x), u_M(x), N_M(x), delta(x)=u_M(x)/N_M(x), "
+            "1/Z_M, and quantile-binned relative deviation for three seeds. "
+            "Require the high-G decile's normalized-delta variance, median "
+            "deviation, and RMSE to be below the bottom half and its L1-error "
+            "share to be below its target-mass share in all six rows. Audit all 12 "
             "appendix settings as a broader, reported "
             "stress test without silently strengthening the primary claim."
         ),
@@ -159,7 +164,7 @@ def git_sha() -> str:
     ).strip()
 
 
-def cumulative_verdicts(full_grid: dict) -> dict[int, tuple[str, str]]:
+def cumulative_verdicts(full_grid: dict, direct_claim_6: dict) -> dict[int, tuple[str, str]]:
     aggregates = full_grid["summary"]["aggregates"]
     return {
         1: (
@@ -201,12 +206,13 @@ def cumulative_verdicts(full_grid: dict) -> dict[int, tuple[str, str]]:
         ),
         6: (
             "VERIFIED",
-            "All six source-primary Figure 5 seed/operator rows have lower "
-            "relative distortion in the high-G decile than in the bottom "
-            "half, and high-G L1-error share is below its target-mass share. "
-            "The broader appendix stress "
-            "audit has 31/36 rows in the same direction, so the verdict is "
-            "not generalized beyond the primary scope.",
+            f"All {len(direct_claim_6['rows'])} primary Figure 5 rows directly "
+            "enumerate G(x), u_M(x), N_M(x), and delta(x)=u_M(x)/N_M(x). "
+            "Each has lower normalized-delta variance, median deviation, and "
+            "RMSE in the high-G decile than in the bottom half, while its "
+            "high-G L1-error share is below its target-mass share. The retained "
+            "broader appendix audit has 31/36 rows in the same direction and "
+            "is not used to generalize the primary verdict.",
         ),
     }
 
@@ -247,7 +253,10 @@ def main() -> None:
     full_grid_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(ARCHIVED_FULL_GRID, full_grid_path)
     full_grid = json.loads(full_grid_path.read_text())
-    verdicts = cumulative_verdicts(full_grid)
+    if sha256(DIRECT_CLAIM_6) != DIRECT_CLAIM_6_SHA256:
+        raise RuntimeError("direct Claim 6 evidence SHA-256 mismatch")
+    direct_claim_6 = json.loads(DIRECT_CLAIM_6.read_text())
+    verdicts = cumulative_verdicts(full_grid, direct_claim_6)
 
     claim_checker_logs = {}
     claim_negative_logs = {}
@@ -279,6 +288,33 @@ def main() -> None:
             f"Claim {claim_id} negative control",
         )
         claim_checker_seconds[f"{claim_id}_negative"] = negative_seconds
+
+    direct_claim_6_artifact = ARTIFACTS / "claim-6" / "direct_state_audit.json"
+    direct_claim_6_artifact.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(DIRECT_CLAIM_6, direct_claim_6_artifact)
+    _, direct_claim_6_seconds = run_checked(
+        [
+            sys.executable,
+            "repro/src/verify_claim_6_direct_audit.py",
+            "--input",
+            str(direct_claim_6_artifact),
+            "--output",
+            str(ARTIFACTS / "claim-6" / "direct_state_check.json"),
+        ],
+        "Claim 6 direct state-level checker",
+    )
+    _, direct_claim_6_negative_seconds = run_expected_failure(
+        [
+            sys.executable,
+            "repro/src/verify_claim_6_direct_audit.py",
+            "--input",
+            str(direct_claim_6_artifact),
+            "--negative-control",
+            "--output",
+            str(ARTIFACTS / "claim-6" / "direct_state_negative_control.json"),
+        ],
+        "Claim 6 direct state-level negative control",
+    )
     report_figure_log, report_figure_seconds = run_checked(
         [
             sys.executable,
@@ -318,6 +354,10 @@ def main() -> None:
             "independent_checker": checker_seconds,
             "molecule_prerequisite_audit": molecule_seconds,
             "claim_evidence_checkers": claim_checker_seconds,
+            "claim_6_direct_state_checker": direct_claim_6_seconds,
+            "claim_6_direct_state_negative_control": (
+                direct_claim_6_negative_seconds
+            ),
             "report_figures": report_figure_seconds,
         },
     }
@@ -339,7 +379,18 @@ def main() -> None:
             },
         )
         (claim_dir / "source_audit.md").write_text(source_audit)
-        if claim_id in (2, 5, 6):
+        if claim_id == 6:
+            method_scope = (
+                "Six fresh source-faithful ingredient checkpoints reproduce the "
+                "two primary Figure 5 operators over three deterministic seeds. "
+                "The direct audit enumerates all 1,024 terminal states per row "
+                "and independently checks G(x), u_M(x), N_M(x), "
+                "delta(x)=u_M(x)/N_M(x), Equation 9, high-G variance, deviation, "
+                "RMSE, target mass, and L1-error share. The immutable output of "
+                f"source run {SOURCE_FULL_GRID_RUN} remains as the broader "
+                "12-operator stress audit."
+            )
+        elif claim_id in (2, 5):
             method_scope = (
                 "The immutable output of source run "
                 f"{SOURCE_FULL_GRID_RUN} is replayed and independently checked. "
@@ -419,7 +470,8 @@ def main() -> None:
 
     campaign_summary = {
         "paper": "2602.21565v1",
-        "baseline_score": "4/12",
+        "baseline_score": "5/12",
+        "baseline_judged_sha": "2795d1d00d613ad2be9ff363c85b3a92e5824388",
         "claims": [
             {
                 "claim": claim_id,
@@ -436,7 +488,11 @@ def main() -> None:
         "elapsed_seconds": time.perf_counter() - campaign_start,
         "full_grid_raw_sha256": sha256(full_grid_path),
         "full_grid_source_run_id": SOURCE_FULL_GRID_RUN,
-        "full_grid_summary": full_grid["summary"],
+        "full_grid_numeric_summary": {
+            "aggregates": full_grid["summary"]["aggregates"],
+            "paper_table": full_grid["summary"]["paper_table"],
+        },
+        "claim_6_direct_state_sha256": sha256(DIRECT_CLAIM_6),
     }
     write_json(ARTIFACTS / "campaign_summary.json", campaign_summary)
 

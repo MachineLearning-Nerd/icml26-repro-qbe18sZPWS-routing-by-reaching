@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "checks": {
+    "all_six_claims_present": true,
+    "exact_cumulative_verdicts": true,
+    "claim_1_all_512_settings": true,
+    "claim_1_max_l1": true,
+    "claim_1_flow_certificate": true,
+    "negative_omit_reaching_rejected": true,
+    "negative_omit_partition_rejected": true,
+    "negative_wrong_beta_rejected": true,
+    "no_inconclusive_or_toy_labels": true,
+    "claim_specific_checkers_passed": true,
+    "claim_specific_checker_verdicts": true,
+    "claim_specific_negative_controls_rejected": true,
+    "claim_2_qualitative_ordering_retained": true,
+    "claim_2_exact_point_excluded": true,
+    "claim_5_paired_ablation_passed": true,
+    "claim_6_primary_scope_passed": true,
+    "claim_6_direct_evidence_content_addressed": true,
+    "claim_6_direct_six_rows": true,
+    "claim_6_direct_checker_passed": true,
+    "claim_6_direct_negative_control_rejected": true,
+    "claim_6_direct_high_g_contract_passed": true,
+    "full_grid_raw_copies_content_addressed": true,
+    "molecule_audit_checker_passed": true,
+    "molecule_negative_control_rejected": true,
+    "molecule_checkpoints_missing": true,
+    "molecule_comparator_surfaces_missing": true,
+    "molecule_threshold_drift_recorded": true
+  }
+}

@@ -13,6 +13,9 @@ from pathlib import Path
 EXPECTED_FULL_GRID_SHA256 = (
     "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec"
 )
+EXPECTED_DIRECT_CLAIM_6_SHA256 = (
+    "dfe60d7381035df45239aab16d266ae87e2a82625fc2163fac54f43df57c28ef"
+)
 EXPECTED_VERDICTS = {
     "1": "VERIFIED",
     "2": "FALSIFIED",
@@ -56,6 +59,14 @@ def verify(root: Path) -> dict:
         )
         for claim in (2, 5, 6)
     }
+    direct_claim_6_path = root / "claim-6" / "direct_state_audit.json"
+    direct_claim_6 = json.loads(direct_claim_6_path.read_text())
+    direct_claim_6_checker = json.loads(
+        (root / "claim-6" / "direct_state_check.json").read_text()
+    )
+    direct_claim_6_negative = json.loads(
+        (root / "claim-6" / "direct_state_negative_control.json").read_text()
+    )
     full_grid_paths = [
         root / f"claim-{claim}" / "full_grid_raw.json" for claim in (2, 5, 6)
     ]
@@ -109,6 +120,32 @@ def verify(root: Path) -> dict:
             and claim_checkers["6"]["checks"][
                 "primary_high_g_error_share_below_target_mass_every_seed_and_operator"
             ]
+        ),
+        "claim_6_direct_evidence_content_addressed": (
+            sha256(direct_claim_6_path)
+            == EXPECTED_DIRECT_CLAIM_6_SHA256
+            == summary["claim_6_direct_state_sha256"]
+        ),
+        "claim_6_direct_six_rows": (
+            direct_claim_6["claim"] == 6
+            and len(direct_claim_6["rows"]) == 6
+        ),
+        "claim_6_direct_checker_passed": (
+            direct_claim_6_checker["passed"]
+            and not direct_claim_6_checker["negative_control"]
+        ),
+        "claim_6_direct_negative_control_rejected": (
+            direct_claim_6_negative["negative_control"]
+            and not direct_claim_6_negative["passed"]
+        ),
+        "claim_6_direct_high_g_contract_passed": all(
+            direct_claim_6_checker["checks"][name]
+            for name in (
+                "high_g_variance_lower_in_all_rows",
+                "high_g_median_deviation_lower_in_all_rows",
+                "high_g_rmse_lower_in_all_rows",
+                "high_g_error_share_below_mass_in_all_rows",
+            )
         ),
         "full_grid_raw_copies_content_addressed": all(
             sha256(path) == EXPECTED_FULL_GRID_SHA256 for path in full_grid_paths

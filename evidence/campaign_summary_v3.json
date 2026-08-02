@@ -1,0 +1,309 @@
+{
+  "baseline_judged_sha": "2795d1d00d613ad2be9ff363c85b3a92e5824388",
+  "baseline_score": "5/12",
+  "claim_1_metrics": {
+    "max_flow_residual": 2.2737367544323206e-13,
+    "max_l1": 8.613986260397333e-16,
+    "settings": 512
+  },
+  "claim_6_direct_state_sha256": "dfe60d7381035df45239aab16d266ae87e2a82625fc2163fac54f43df57c28ef",
+  "claims": [
+    {
+      "assessment": "Retained full-scale exact theorem regression: 512/512 settings pass.",
+      "claim": 1,
+      "verdict": "VERIFIED"
+    },
+    {
+      "assessment": "The source-faithful neural run preserves the qualitative ordering against both baselines in all 12 seed/k cells, but its ours means k=2 0.0108 (95% CI 0.0051-0.0166), k=3 0.0079 (95% CI 0.0042-0.0117), k=4 0.0072 (95% CI 0.0034-0.0111), k=5 0.0071 (95% CI 0.0055-0.0087) exclude the exact printed 0.003 point.",
+      "claim": 2,
+      "verdict": "FALSIFIED"
+    },
+    {
+      "assessment": "The released tree has QM9 data and a GAP scorer, but lacks the QM9 ingredient, MOGFN, and HN-GFN checkpoints required by the exact 10-preference, 128-candidate GAP-SA comparison.",
+      "claim": 3,
+      "verdict": "BLOCKED"
+    },
+    {
+      "assessment": "The released tree lacks molecule classifier-guidance code/checkpoints and a timing benchmark; its QM9 SA/QED bin thresholds are 0.3, whereas arXiv v1 Table 4 specifies 0.4.",
+      "claim": 4,
+      "verdict": "BLOCKED"
+    },
+    {
+      "assessment": "The faithful no-reaching ablation is worse in every seed/k cell: k=2 ensemble=0.1239 vs ours=0.0108, k=3 ensemble=0.1049 vs ours=0.0079, k=4 ensemble=0.1181 vs ours=0.0072, k=5 ensemble=0.1030 vs ours=0.0071",
+      "claim": 5,
+      "verdict": "VERIFIED"
+    },
+    {
+      "assessment": "All 6 primary Figure 5 rows directly enumerate G(x), u_M(x), N_M(x), and delta(x)=u_M(x)/N_M(x). Each has lower normalized-delta variance, median deviation, and RMSE in the high-G decile than in the bottom half, while its high-G L1-error share is below its target-mass share. The retained broader appendix audit has 31/36 rows in the same direction and is not used to generalize the primary verdict.",
+      "claim": 6,
+      "verdict": "VERIFIED"
+    }
+  ],
+  "elapsed_seconds": 10.6214367079956,
+  "full_grid_numeric_summary": {
+    "aggregates": {
+      "ensemble": {
+        "2": {
+          "ci95_t": [
+            0.07543091603438806,
+            0.17234567647974036
+          ],
+          "mean": 0.12388829625706421,
+          "n_seeds": 3,
+          "per_seed": [
+            0.10409160237031756,
+            0.14309149844484637,
+            0.12448178795602871
+          ],
+          "sample_std": 0.01950672057916365
+        },
+        "3": {
+          "ci95_t": [
+            0.0496819221335519,
+            0.16012088757867288
+          ],
+          "mean": 0.10490140485611239,
+          "n_seeds": 3,
+          "per_seed": [
+            0.08165072965857689,
+            0.1259435147512704,
+            0.10710997015848989
+          ],
+          "sample_std": 0.022228833152867757
+        },
+        "4": {
+          "ci95_t": [
+            0.06599139695998502,
+            0.17013051111521058
+          ],
+          "mean": 0.1180609540375978,
+          "n_seeds": 3,
+          "per_seed": [
+            0.09671543766671675,
+            0.13861463151260978,
+            0.11885279293346684
+          ],
+          "sample_std": 0.02096081744259246
+        },
+        "5": {
+          "ci95_t": [
+            0.059453159361872954,
+            0.14662497066480482
+          ],
+          "mean": 0.10303906501333888,
+          "n_seeds": 3,
+          "per_seed": [
+            0.08399238646234153,
+            0.11854314005904598,
+            0.10658166851862916
+          ],
+          "sample_std": 0.017545688166094187
+        }
+      },
+      "hngfn": {
+        "2": {
+          "ci95_t": [
+            0.017276153192308845,
+            0.0384825124242376
+          ],
+          "mean": 0.027879332808273222,
+          "n_seeds": 3,
+          "per_seed": [
+            0.03257754456717521,
+            0.02424028421228286,
+            0.026820169645361602
+          ],
+          "sample_std": 0.004268354192258023
+        },
+        "3": {
+          "ci95_t": [
+            0.01472432256362153,
+            0.03327401963861752
+          ],
+          "mean": 0.023999171101119526,
+          "n_seeds": 3,
+          "per_seed": [
+            0.02510487193649169,
+            0.019837573730910663,
+            0.02705506763595622
+          ],
+          "sample_std": 0.0037336289746504638
+        },
+        "4": {
+          "ci95_t": [
+            0.025060594329993018,
+            0.0530524434572684
+          ],
+          "mean": 0.03905651889363071,
+          "n_seeds": 3,
+          "per_seed": [
+            0.043085000972496346,
+            0.03261827708774945,
+            0.041466278620646335
+          ],
+          "sample_std": 0.0056341178259193886
+        },
+        "5": {
+          "ci95_t": [
+            0.032167932874850674,
+            0.05021152805655568
+          ],
+          "mean": 0.04118973046570318,
+          "n_seeds": 3,
+          "per_seed": [
+            0.044400934217264876,
+            0.04191989933315199,
+            0.03724835784669267
+          ],
+          "sample_std": 0.0036317622603166877
+        }
+      },
+      "mogfn": {
+        "2": {
+          "ci95_t": [
+            0.017231400438036164,
+            0.037010899169685925
+          ],
+          "mean": 0.027121149803861044,
+          "n_seeds": 3,
+          "per_seed": [
+            0.0291390402126126,
+            0.022535093667102046,
+            0.029689315531868488
+          ],
+          "sample_std": 0.0039811598685400955
+        },
+        "3": {
+          "ci95_t": [
+            0.025621270549317465,
+            0.03740125142512382
+          ],
+          "mean": 0.031511260987220645,
+          "n_seeds": 3,
+          "per_seed": [
+            0.029846426710719243,
+            0.030461371861747466,
+            0.03422598438919522
+          ],
+          "sample_std": 0.002371040224588059
+        },
+        "4": {
+          "ci95_t": [
+            0.03195137525727533,
+            0.05389860378138539
+          ],
+          "mean": 0.04292498951933036,
+          "n_seeds": 3,
+          "per_seed": [
+            0.03859007441496942,
+            0.04276425858552102,
+            0.047420635557500646
+          ],
+          "sample_std": 0.004417474204543588
+        },
+        "5": {
+          "ci95_t": [
+            0.04643249514013921,
+            0.06467840742585788
+          ],
+          "mean": 0.05555545128299855,
+          "n_seeds": 3,
+          "per_seed": [
+            0.05207899207016453,
+            0.055190632469020784,
+            0.059396729309810326
+          ],
+          "sample_std": 0.0036724840574737442
+        }
+      },
+      "ours": {
+        "2": {
+          "ci95_t": [
+            0.005081107285069114,
+            0.016557566520310353
+          ],
+          "mean": 0.010819336902689733,
+          "n_seeds": 3,
+          "per_seed": [
+            0.011590689231525175,
+            0.00822241160858539,
+            0.012644909867958631
+          ],
+          "sample_std": 0.002309948273217332
+        },
+        "3": {
+          "ci95_t": [
+            0.004187424927978889,
+            0.011671332854573967
+          ],
+          "mean": 0.007929378891276428,
+          "n_seeds": 3,
+          "per_seed": [
+            0.008385539054870605,
+            0.00624768395209685,
+            0.00915491366686183
+          ],
+          "sample_std": 0.0015063391798465634
+        },
+        "4": {
+          "ci95_t": [
+            0.0034025750547656674,
+            0.01108520750637695
+          ],
+          "mean": 0.007243891280571309,
+          "n_seeds": 3,
+          "per_seed": [
+            0.007536117896961514,
+            0.005572290010604775,
+            0.00862326593414764
+          ],
+          "sample_std": 0.0015463378731715492
+        },
+        "5": {
+          "ci95_t": [
+            0.005526666972310852,
+            0.008693419175959788
+          ],
+          "mean": 0.007110043074135319,
+          "n_seeds": 3,
+          "per_seed": [
+            0.0066955129768757615,
+            0.007843991657864535,
+            0.006790624587665661
+          ],
+          "sample_std": 0.0006373946558415388
+        }
+      }
+    },
+    "paper_table": {
+      "ensemble": {
+        "2": 0.117,
+        "3": 0.098,
+        "4": 0.113,
+        "5": 0.111
+      },
+      "hngfn": {
+        "2": 0.017,
+        "3": 0.021,
+        "4": 0.032,
+        "5": 0.035
+      },
+      "mogfn": {
+        "2": 0.021,
+        "3": 0.027,
+        "4": 0.042,
+        "5": 0.048
+      },
+      "ours": {
+        "2": 0.003,
+        "3": 0.003,
+        "4": 0.003,
+        "5": 0.003
+      }
+    }
+  },
+  "full_grid_raw_sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+  "full_grid_source_run_id": "fd92e2bc-ea94-4004-a820-62abf3e5e917",
+  "paper": "2602.21565v1",
+  "verifier_seconds": 0.039397291984641925
+}
