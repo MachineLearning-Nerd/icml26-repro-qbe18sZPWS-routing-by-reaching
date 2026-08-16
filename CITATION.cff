@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: "Routing by Reaching — ICML 2026 reproduction audit"
+message: "Please cite the paper and this repository when using the reproduction code or evidence."
+type: software
+authors:
+  - given-names: Dinesh
+    family-names: Jinjala
+    affiliation: MachineLearning-Nerd
+repository-code: "https://github.com/MachineLearning-Nerd/icml26-routing-by-reaching-audit"
+url: "https://github.com/MachineLearning-Nerd/icml26-routing-by-reaching-audit"
+date-released: 2026-08-16
+preferred-citation:
+  type: article
+  title: "Routing by Reaching: Composition of Pre-trained GFlowNets for Multi-Objective Generation"
+  authors:
+    - given-names: Seokwon
+      family-names: Yoon
+    - given-names: Youngbin
+      family-names: Choi
+    - given-names: Seunghyuk
+      family-names: Cho
+    - given-names: Seungbeom
+      family-names: Lee
+    - given-names: MoonJeong
+      family-names: Park
+    - given-names: Dongwoo
+      family-names: Kim
+  year: 2026
+  journal: "ICML 2026"
+  url: "https://arxiv.org/abs/2602.21565"

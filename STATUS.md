@@ -1,31 +1,26 @@
-# STATUS — Routing by Reaching (`qbe18sZPWS`)
+# Status
 
-**Last updated:** 2026-08-03. **State:** published — awaiting judge.
+- **Collection status:** `MIXED_RESULTS_WITH_LIMITATIONS`.
+- **Paper:** *Routing by Reaching: Composition of Pre-trained GFlowNets for
+  Multi-Objective Generation*; arXiv v1 `2602.21565` uses the title *Training-
+  free Composition of Pre-trained GFlowNets for Multi-Objective Generation*.
+- **Authors:** Seokwon Yoon, Youngbin Choi, Seunghyuk Cho, Seungbeom Lee,
+  MoonJeong Park, and Dongwoo Kim.
+- **Claim vector:** C1 `VERIFIED_SCOPED`; C2
+  `FALSIFIED_EXACT_POINT` with qualitative ordering retained; C3 `BLOCKED`;
+  C4 `BLOCKED`; C5 `VERIFIED_SCOPED`; C6
+  `VERIFIED_PRIMARY_SCOPE`.
+- **Recorded cumulative run:** source run
+  `fd92e2bc-ea94-4004-a820-62abf3e5e917`, source commit
+  `f54e39476739a9184b3712e5308e9e4d7fd74d5e`, locked Python 3.10.18
+  environment, content-addressed raw outputs.
+- **Independent release gate:** [`evidence/verifier_output_v3.json`](evidence/verifier_output_v3.json)
+  reports `passed: true`; claim-specific negative controls are retained.
+- **External score boundary:** historical HF and blind-review records are
+  preserved, but this GitHub repository makes no current judge-score claim.
+- **Author of this audit:** `MachineLearning-Nerd`.
 
-- Retained live judged baseline: `4/12` at HF
-  `8de344e3c4a45398170457c954d2b70dd62dab7c`.
-- Additive route-consistency release: HF
-  `647c20f6da075821b2981e101120aa60441f3992`.
-- Space: `https://huggingface.co/spaces/DineshAI/qbe18sZPWS`.
-- GitHub: `https://github.com/MachineLearning-Nerd/icml26-repro-qbe18sZPWS-routing-by-reaching`.
-
-## Release evidence
-
-- Claim 1 remains banked and byte-identical: its canonical page, exact raw
-  output, and verifier did not change.
-- Claim 2's retained legacy route now exposes the source-scale 48-model,
-  three-seed neural comparison instead of the exact-tabular Claim 1 audit.
-- Claim 3's retained legacy route now states the literal QM9 contract and its
-  missing-checkpoint blocker instead of presenting a grid proxy.
-- Claim 5's canonical paired neural ablation is unchanged; retained methods and
-  control pages now prevent exact-tabular values from being substituted for it.
-- Claim 6's retained short route now mirrors the canonical 6,144-state direct
-  `G`, `u_M`, `N_M`, and `δ` audit. Five broader appendix reversals remain
-  disclosed.
-- Claims 3–4 remain blocked by missing trained molecule/comparator material and
-  the absent classifier-guidance timing path.
-
-The outcome-blind review remains `8/12`, not a live leaderboard score. The
-current challenge validator passes on the clean eight-page stage. Exact-revision
-verification matched all 12 changed UTF-8 paths, retained all 131 baseline
-paths (134 final), and preserved the byte-identical nine-node page tree.
+The decisive limitations are the exact numerical mismatch for the printed C2
+point, missing molecule checkpoints/comparators for C3, missing classifier-
+guidance/timing material for C4, and the five broader appendix reversals kept
+outside C6's primary scope.

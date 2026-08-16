@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "repository": "MachineLearning-Nerd/icml26-routing-by-reaching-audit",
+  "previous_repository": "MachineLearning-Nerd/icml26-repro-qbe18sZPWS-routing-by-reaching",
+  "overall_status": "MIXED_RESULTS_WITH_LIMITATIONS",
+  "paper": {
+    "review_title": "Routing by Reaching: Composition of Pre-trained GFlowNets for Multi-Objective Generation",
+    "arxiv_v1_title": "Training-free Composition of Pre-trained GFlowNets for Multi-Objective Generation",
+    "arxiv": "2602.21565",
+    "openreview": "qbe18sZPWS",
+    "official_source": "https://github.com/ml-postech/gflownet-composition",
+    "official_source_commit": "b82493c8cd9b46a0933ab8f19440aebbf3e14b28"
+  },
+  "recorded_campaign": {
+    "command": "uv sync --frozen && uv run python repro/src/run_campaign.py",
+    "source_git_sha": "f54e39476739a9184b3712e5308e9e4d7fd74d5e",
+    "source_run_id": "fd92e2bc-ea94-4004-a820-62abf3e5e917",
+    "python": "3.10.18",
+    "uv_lock_sha256": "240aafac42d8dd4388c1f1e2239dbd5d530de02b3f0286232a5a06bc360c22e4",
+    "packages": {
+      "numpy": "1.26.4",
+      "pytest": "9.0.2",
+      "torch": "2.6.0",
+      "torchgfn": "2.4.1"
+    },
+    "archived_full_grid": {
+      "paths": ["evidence/full_grid_raw.json", "repro/evidence/full_grid_raw.json"],
+      "sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec",
+      "source_git_sha": "6c89eebcb076aab1076272d38a86529d649e2709",
+      "source_run_id": "fd92e2bc-ea94-4004-a820-62abf3e5e917",
+      "replayed_not_retrained": true
+    },
+    "direct_claim_6": {
+      "path": "evidence/claim-6/direct_state_audit.json",
+      "sha256": "dfe60d7381035df45239aab16d266ae87e2a82625fc2163fac54f43df57c28ef"
+    },
+    "cumulative_verifier": "evidence/verifier_output_v3.json",
+    "cumulative_verifier_passed": true
+  },
+  "claim_statuses": {
+    "C1": "VERIFIED_SCOPED",
+    "C2": "FALSIFIED_EXACT_POINT",
+    "C3": "BLOCKED",
+    "C4": "BLOCKED",
+    "C5": "VERIFIED_SCOPED",
+    "C6": "VERIFIED_PRIMARY_SCOPE"
+  },
+  "content_addressed_evidence": [
+    {
+      "path": "evidence/full_grid_raw.json",
+      "sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec"
+    },
+    {
+      "path": "repro/evidence/full_grid_raw.json",
+      "sha256": "d9eb6771f79fb6ac03381c268712710c832342c161006913b2d81bd7a7b0afec"
+    },
+    {
+      "path": "evidence/claim-6/direct_state_audit.json",
+      "sha256": "dfe60d7381035df45239aab16d266ae87e2a82625fc2163fac54f43df57c28ef"
+    }
+  ],
+  "required_audit_files": [
+    "README.md",
+    "STATUS.md",
+    "REPORT.md",
+    "CLAIM_EVIDENCE.md",
+    "BRANCH_AUDIT.md",
+    "docs/SOURCE_AUDIT.md",
+    "ENVIRONMENT.md",
+    "AUTHOR_THANK_YOU.md",
+    "CITATION.cff",
+    "claims.json",
+    "EVIDENCE_MANIFEST.json",
+    "verify_final.py"
+  ],
+  "required_evidence_paths": [
+    "evidence/verifier_output_v3.json",
+    "evidence/campaign_summary_v3.json",
+    "evidence/release_comparison_v5.json",
+    "evidence/claim-1/",
+    "evidence/claim-2/independent_checker_v3.json",
+    "evidence/claim-3/molecule_prerequisite_audit.json",
+    "evidence/claim-4/molecule_prerequisite_audit.json",
+    "evidence/claim-5/independent_checker.json",
+    "evidence/claim-6/direct_state_check.json",
+    "repro/evidence/full_grid_raw.json"
+  ],
+  "branches": {
+    "expected_final": [
+      "main",
+      "audit/molecule-claim-prerequisites",
+      "audit/qm9-hdf-compatibility",
+      "evidence/cumulative-claim-contracts",
+      "baseline/frozen-4-12",
+      "evidence/full-seeded-hypergrid",
+      "experiment/hf-cpu-threaded-hypergrid",
+      "experiment/hypergrid-seed-1337",
+      "experiment/hypergrid-seed-20260719",
+      "release/illustrated-report",
+      "experiment/local-cpu-threaded-hypergrid",
+      "audit/profile-hypergrid-cpu",
+      "audit/profile-single-thread",
+      "release/prepublication-report",
+      "release/published-space-mirror"
+    ],
+    "legacy_prefixes_removed": ["orx/"],
+    "legacy_refs_are_provenance_only": true
+  },
+  "external_evaluation_boundary": {
+    "historical_records": [
+      {"label": "historical baseline", "score": "4/12", "revision": "8de344e3c4a45398170457c954d2b70dd62dab7c"},
+      {"label": "historical judged baseline", "score": "5/12", "revision": "2795d1d00d613ad2be9ff363c85b3a92e5824388"},
+      {"label": "outcome-blind review", "score": "8/12", "revision": null}
+    ],
+    "current_score_claim": null,
+    "interpretation": "Historical external records are provenance only; this repository makes no current live leaderboard claim."
+  },
+  "attribution": {
+    "name": "MachineLearning-Nerd",
+    "email": "MachineLearning-Nerd@users.noreply.github.com",
+    "author_and_committer_required": true,
+    "co_author_trailers_allowed": false
+  }
+}

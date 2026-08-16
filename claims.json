@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "repository": "MachineLearning-Nerd/icml26-routing-by-reaching-audit",
+  "previous_repository": "MachineLearning-Nerd/icml26-repro-qbe18sZPWS-routing-by-reaching",
+  "paper": {
+    "review_title": "Routing by Reaching: Composition of Pre-trained GFlowNets for Multi-Objective Generation",
+    "arxiv_v1_title": "Training-free Composition of Pre-trained GFlowNets for Multi-Objective Generation",
+    "arxiv": "2602.21565",
+    "openreview": "qbe18sZPWS",
+    "authors": [
+      "Seokwon Yoon",
+      "Youngbin Choi",
+      "Seunghyuk Cho",
+      "Seungbeom Lee",
+      "MoonJeong Park",
+      "Dongwoo Kim"
+    ]
+  },
+  "overall_status": "MIXED_RESULTS_WITH_LIMITATIONS",
+  "interpretation": "The recorded evidence verifies finite exact and scoped empirical contracts, falsifies the exact printed C2 point, and blocks C3/C4 because required molecule artifacts are absent.",
+  "claims": [
+    {
+      "id": "C1",
+      "paper_anchor": "v1 Proposition 4.1, Section 4.2, Appendix A.1",
+      "paper_claim": "Reaching-weighted composition recovers the exact linearly scalarized HyperGrid target.",
+      "status": "VERIFIED_SCOPED",
+      "recorded_campaign_verdict": "VERIFIED",
+      "producer": ["repro/src/run_routing_by_reaching.py"],
+      "production_path": [
+        "Enumerate the 32x32 HyperGrid and 128 simplex preferences for each k in 2..5.",
+        "Evaluate reaching-weighted mixtures and the exact target distribution.",
+        "Write raw summaries and independently recompute flow and terminal-distribution residuals.",
+        "Run omission, partition-normalization, and wrong-beta mutations; require each control to fail."
+      ],
+      "evidence": [
+        "evidence/claim-1/",
+        "evidence/claim-1/raw_exact_summary.json",
+        "repro/tests/test_reproduction.py",
+        "evidence/verifier_output_v3.json"
+      ],
+      "result": {
+        "settings": 512,
+        "max_l1": 8.613986260397333e-16,
+        "max_flow_residual": 2.2737367544323206e-13
+      },
+      "limitations": "This is a finite exact regression and does not by itself prove the universal theorem."
+    },
+    {
+      "id": "C2",
+      "paper_anchor": "v1 Sections 5.1-5.2 and Table 1",
+      "paper_claim": "The neural HyperGrid comparison attains the printed ours value of 0.003 while outperforming the baselines.",
+      "status": "FALSIFIED_EXACT_POINT",
+      "recorded_campaign_verdict": "FALSIFIED",
+      "producer": ["archived parent run from evidence/run_metadata.json", "repro/src/verify_full_grid_claims.py"],
+      "production_path": [
+        "Train or retain the source-faithful 32x32 neural architecture for 48 models across three seeds.",
+        "Evaluate 128 preferences for each objective count k in 2..5 over all 1,024 terminal states.",
+        "Aggregate seed means and two-sided 95% t intervals for ours, MOGFN, HN-GFN, and the no-reaching ablation.",
+        "Require qualitative ordering in every seed/k cell and test whether the exact printed 0.003 lies below every ours interval."
+      ],
+      "evidence": [
+        "evidence/full_grid_raw.json",
+        "repro/evidence/full_grid_raw.json",
+        "evidence/claim-2/independent_checker_v3.json",
+        "evidence/claim-2/negative_control_v3.json",
+        "evidence/campaign_summary_v3.json"
+      ],
+      "result": {
+        "models": 48,
+        "seeds": [604, 1337, 20260719],
+        "ours_means_by_k": {"2": 0.0108, "3": 0.0079, "4": 0.0072, "5": 0.0071},
+        "qualitative_ordering_retained": true,
+        "exact_printed_point_supported": false
+      },
+      "limitations": "The exact printed point is not supported by the archived run; this does not falsify the qualitative advantage or every rounded interpretation of the table."
+    },
+    {
+      "id": "C3",
+      "paper_anchor": "v1 Sections 6.1-6.2 and Table 3",
+      "paper_claim": "QM9 GAP-SA reaches 0.876 for the proposed composition versus MOGFN 0.816 and HN-GFN 0.805.",
+      "status": "BLOCKED",
+      "recorded_campaign_verdict": "BLOCKED",
+      "producer": ["repro/src/audit_molecule_claims.py"],
+      "production_path": [
+        "Check the released tree for the QM9 data, GAP scorer, ingredient checkpoints, and MOGFN/HN-GFN comparator checkpoints.",
+        "Compare the discovered materials with the exact beta=32, ten-preference, 128-candidate contract.",
+        "Return BLOCKED when required artifacts are absent; do not substitute a proxy scorer or toy run."
+      ],
+      "evidence": [
+        "evidence/claim-3/molecule_prerequisite_audit.json",
+        "evidence/claim-3/molecule_audit_checker.json",
+        "evidence/claim-3/molecule_negative_control.json",
+        "evidence/claim-3/limitations_and_deviations.md"
+      ],
+      "result": {
+        "required_ingredient_checkpoints_present": false,
+        "required_comparator_checkpoints_present": false,
+        "proxy_credit_awarded": false
+      },
+      "limitations": "A faithful C3 result requires the missing checkpoints and comparator surfaces."
+    },
+    {
+      "id": "C4",
+      "paper_anchor": "v1 Sections 6.2-6.3 and Tables 4-5",
+      "paper_claim": "Logical molecule composition gives a 40-70x speedup with comparable or better accuracy.",
+      "status": "BLOCKED",
+      "recorded_campaign_verdict": "BLOCKED",
+      "producer": ["repro/src/audit_molecule_claims.py"],
+      "production_path": [
+        "Check for the classifier-guidance implementation, required checkpoints, timing benchmark, target-bin sampler, and comparator imports.",
+        "Compare released SA/QED thresholds with the arXiv v1 contract.",
+        "Return BLOCKED when the timing or comparator surface is absent or thresholds drift; do not invent a speedup."
+      ],
+      "evidence": [
+        "evidence/claim-4/molecule_prerequisite_audit.json",
+        "evidence/claim-4/molecule_audit_checker.json",
+        "evidence/claim-4/molecule_negative_control.json",
+        "evidence/claim-4/limitations_and_deviations.md"
+      ],
+      "result": {
+        "classifier_guidance_present": false,
+        "timing_surface_present": false,
+        "released_threshold": 0.3,
+        "arxiv_v1_threshold": 0.4
+      },
+      "limitations": "A faithful C4 result requires the missing classifier-guidance and timing/comparator materials."
+    },
+    {
+      "id": "C5",
+      "paper_anchor": "v1 Sections 5.1-5.2 and Table 1",
+      "paper_claim": "The reaching probability term is responsible for the neural composition improvement.",
+      "status": "VERIFIED_SCOPED",
+      "recorded_campaign_verdict": "VERIFIED",
+      "producer": ["archived full-grid evidence", "repro/src/verify_claim_evidence.py"],
+      "production_path": [
+        "Reuse the same trained ingredients, seeds, preferences, and terminal evaluations as C2.",
+        "Remove only u_i(s), the reaching probability term, from the mixer.",
+        "Compare the paired no-reaching and reaching scores in all 12 seed/k cells.",
+        "Require at least 0.05 paired degradation and retain the removed-reaching mutation as a negative control."
+      ],
+      "evidence": [
+        "evidence/claim-5/",
+        "evidence/claim-5/independent_checker.json",
+        "evidence/claim-5/negative_control.json",
+        "evidence/campaign_summary_v3.json"
+      ],
+      "result": {
+        "paired_cells": 12,
+        "all_cells_worse_without_reaching": true,
+        "no_reaching_mean_range": [0.1030, 0.1239],
+        "reaching_mean_range": [0.0071, 0.0108]
+      },
+      "limitations": "The verdict is scoped to the archived three-seed HyperGrid contract."
+    },
+    {
+      "id": "C6",
+      "paper_anchor": "v1 Section 5.3 and Figure 5",
+      "paper_claim": "For nonlinear composition, distortion is closer to constant in high-G regions.",
+      "status": "VERIFIED_PRIMARY_SCOPE",
+      "recorded_campaign_verdict": "VERIFIED",
+      "producer": ["repro/src/run_claim_6_direct_audit.py", "repro/src/verify_claim_6_direct_audit.py"],
+      "production_path": [
+        "Enumerate G(x), u_M(x), N_M(x), delta(x)=u_M(x)/N_M(x), induced mass, target mass, and L1 contribution.",
+        "Run the two primary nonlinear operators over three seeds for six primary rows.",
+        "Recompute high-G versus bottom-half variance, median deviation, RMSE, and error-share comparisons with a stdlib checker.",
+        "Shuffle N_M as a negative control and keep the broader 36-row appendix descriptive because it contains five reversals."
+      ],
+      "evidence": [
+        "evidence/claim-6/direct_state_audit.json",
+        "evidence/claim-6/direct_state_check.json",
+        "evidence/claim-6/direct_state_negative_control.json",
+        "evidence/claim-6/direct_state_samples.csv"
+      ],
+      "result": {
+        "primary_rows": 6,
+        "primary_state_operator_seed_rows": 6144,
+        "all_primary_rows_pass": true,
+        "appendix_same_direction_rows": 31,
+        "appendix_total_rows": 36,
+        "appendix_reversals": 5
+      },
+      "limitations": "The positive verdict is restricted to the six primary rows; the broader appendix is not used to generalize it."
+    }
+  ]
+}
